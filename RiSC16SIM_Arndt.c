@@ -7,7 +7,7 @@
 // ISA02 BEQ durch BNE ersetzt!!!
 // 30.3.20 add_unsigned Befehl für add und addi
 // 03.04.22 Arndt Karger: Aufruf von ram1.txt durch Übergabe einer Arbeitsspeicherdatei <Inputfile.hex> ersetzt
-
+// 12.04.2022 Arndt Karger: Funktion hinzugefügt, die den Stack als txt Datei ausgibt
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -61,7 +61,7 @@ void write_ram( char ram[MAX_A][4] ){
    if(ram2 == NULL) {
 	   printf("Datei 2 konnte NICHT geoeffnet werden.\n");
    }else {
-       for (j = 0; j < 256; j++){
+       for (j = 0; j < 256; j++){     //war 256
            fputc(ram[j][0], ram2);
            fputc(ram[j][1], ram2);
            fputc(ram[j][2], ram2);
@@ -72,6 +72,26 @@ void write_ram( char ram[MAX_A][4] ){
    fclose(ram2);
 }//write ram
 
+void write_stack( char ram[MAX_A][4] ){
+
+   FILE *ram2;
+   int j;
+
+   ram2 = fopen("stack2.txt", "w");
+
+   if(ram2 == NULL) {
+	   printf("Datei 2 konnte NICHT geoeffnet werden.\n");
+   }else {
+       for (j = 32667; j < 32767; j++){     //war 256
+           fputc(ram[j][0], ram2);
+           fputc(ram[j][1], ram2);
+           fputc(ram[j][2], ram2);
+           fputc(ram[j][3], ram2);
+           fputc('\n',ram2);
+       }
+   }
+   fclose(ram2);
+}//write Stack
 
 
 
@@ -451,6 +471,7 @@ int main(int argc, char *argv[]){
 		while (terminate_sim == 0);
 	
 	write_ram(ram);
+    write_stack(ram);
 
     dump_regfile(regfile);
 }
