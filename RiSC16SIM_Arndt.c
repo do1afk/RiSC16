@@ -82,7 +82,7 @@ void write_stack( char ram[MAX_A][4] ){
    if(ram2 == NULL) {
 	   printf("Datei 2 konnte NICHT geoeffnet werden.\n");
    }else {
-       for (j = 32703; j < 32767; j++){     
+       for (j = 32703; j < 32768; j++){     
            fputc(ram[j][0], ram2);
            fputc(ram[j][1], ram2);
            fputc(ram[j][2], ram2);
