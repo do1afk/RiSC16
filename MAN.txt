@@ -1,0 +1,35 @@
+Manual für die in der RiSC16 Projektarbeit entworfenen Funktionen:
+
+Registerverwendung:
+    -r1: zur Wertübergabe, sieht nach UPRO noch gleich aus
+    -r2: zur Wertübergabe, sieht nach UPRO noch gleich aus
+    -r3: Ergebnisregister
+    -r4:
+    -r5:
+    -r6: Rücksprungadressen
+    -r7: Stackpointer
+
+Funktionsaufruf:
+    Definiere r5, r6 für Programmaufrufe
+    1. hole Adresse von call in r1:
+        movi r5, call 
+    2. springe zu Adresse in r1, speichere Rücksprungadresse in r2:
+        jalr r6, r5
+    3. spring wieder zurück: (Hier ist die Rücksprungadresse (r5) unwichtig)
+        jalr r5, r6
+        
+Stack:
+    -Definiere SP als r7
+        -push:
+                  addi r7, r7, -1           #SP erniedrigen
+                  sw  r1, r7, 0              #r1 weg pushen
+                  
+        -pop:
+                  lw r3, r7, 0         #in r3 poppen  
+                  addi r7, r7, 1           #SP erhöhen, damit SP immer auf letztes Ereignis zeigt
+          
+          
+shift_l 
+    -shiftweite (n) in r1
+    -zu shiftendes Wort (a) in r2
+    -Ergebnis wird in r3 zurück gegeben
