@@ -9,6 +9,8 @@
 // 03.04.22 Arndt Karger: Aufruf von ram1.txt durch Übergabe einer Arbeitsspeicherdatei <Inputfile.hex> ersetzt
 // 12.04.2022 Arndt Karger: Funktion hinzugefügt, die den Stack als txt Datei ausgibt
 
+//Usage: RiSC16SIM_Arndt <INPUTFILE.hex>
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
