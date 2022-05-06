@@ -1,6 +1,7 @@
 ######################################################################
 #implementierte Unterprogramme:
 #       -MUL via add
+#       -shift_l
 ######################################################################
 
 #initialisiere Stack
@@ -27,6 +28,10 @@ Start:      lui r1, 0
             
             lui r1, 0
             lui r2, 0
+          
+            
+            
+            
 
 #call shift_l: r3 = r2 r1 mal geshiftet
             addi r1, r1, 3
@@ -98,4 +103,3 @@ stl_finish: lw r2, r7, 0            #r2 poppen
             addi r7, r7, 1
             
             jalr r5, r6             #zurück zur aufrufenden Instanz
-
