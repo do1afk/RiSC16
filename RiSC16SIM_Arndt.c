@@ -109,9 +109,9 @@ void dump_regfile (int regfile[8]) {
 
      int i;
 
-     printf("register dump\n");
+     printf("register dump\nReg     hex     dez\n");
      for ( i=0; i < 8; i++ ){
-       printf("R%d   %x\n",i,regfile[i]);
+       printf("R%d   %4x     %4d\n",i,regfile[i],regfile[i]);
      }
 }
 
