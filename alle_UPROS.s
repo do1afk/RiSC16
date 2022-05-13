@@ -6,7 +6,7 @@
 
 #initialisiere Stack
 
-            lw r7, r0, Stack_adr   #Stack Adresse in r7 laden
+            lw r7, r0, Stack_adr   #Stack Adresse in r7 laden, startet bei 7FFF
             lui r1, 0              #ffff in r1 laden
             addi r1, r1, -1
             sw r1, r7, 0           #stack Beginn markieren
@@ -19,26 +19,37 @@ Stack_adr:  .fill 32767
               
 Start:      lui r1, 0
 
-#call MULV2: r3 = r1 * r2
+
+
+##call MULv2: r3 = r1 * r2
+#            addi r1, r1, 4
+#            addi r2, r2, 4
+#            
+#            movi r5, MULv2
+#            jalr r6, r5
+#            
+#            lui r1, 0
+#            lui r2, 0
+#          
+
+
+#call MULv3: r3 = r1 * r2
             addi r1, r1, 4
             addi r2, r2, 4
             
-            movi r5, MULv2
+            movi r5, MULv3
             jalr r6, r5
             
             lui r1, 0
             lui r2, 0
-          
             
             
-            
-
-#call shift_l: r3 = r2 r1 mal geshiftet
-            addi r1, r1, 3
-            addi r2, r2, 3
-            
-            movi r5, shift_l
-            jalr r6, r5
+##call shift_l: r3 = r2 r1 mal geshiftet
+#            addi r1, r1, 3
+#            addi r2, r2, 3
+#            
+#            movi r5, shift_l
+#            jalr r6, r5
         
                 
             
@@ -81,6 +92,90 @@ MUL_finish: lw r2, r7, 0            #r2 poppen
             
             jalr r5, r6             #zurück zur aufrufenden Instanz
 
+            
+######################################################################
+#MULv3:     bitweise MUL
+#   Verwendung: r3 = r1 * r2
+######################################################################
+MULv3:      addi r7, r7, -1         #SP pushen
+            sw r7, r7, 0
+            addi r7, r7, -1         #r1 pushen
+            sw r1, r7, 0
+            addi r7, r7, -1         #r2 pushen
+            sw r2, r7, 0
+#halt #debug
+            lui r3, 0               #lade r3 mit 0, sicherheitshalber    
+            lui r4, 0               #r4 nullen
+            addi r4, r4, 8          #r4 mit bitbreite laden
+            
+MULv3_loop: addi r4, r4, -1         #r4 dekrementieren
+#halt #debug            
+#Maske generieren:
+            addi r7, r7, -1         #r1 pushen
+            sw r1, r7, 0
+            addi r7, r7, -1         #r2 pushen
+            sw r2, r7, 0
+            addi r7, r7, -1         #r3 pushen
+            sw r3, r7, 0
+            
+            lui r1, 0               #r1 nullen
+            add r1, r1, r4          #r1 = r4; das ist shiftweite
+            
+            lui r2, 0           
+            addi r2, r2, 1          #r2 mit "1" laden
+            
+            movi r5, shift_l        #call shift_l
+            jalr r6, r5             #danach ist Maske in r3
+            
+#Maskieren:
+            lw r2, r7, 1            #r2 poppen
+            nand r3, r3, r2         #maskierung via nand
+            nand r3, r3, r3         #negieren
+
+#ist r4 tes bit null?
+            bne r4, r0, MULv3_go    #if(r4 != 0) goto MULv3_go;
+#Ende erreicht?
+MULv3_back: bne r4, r0, MULv3_loop  #wenn nein, fang von vorn an!
+
+            bne r7, r0, MULv3_finish #fertig!
+            
+            
+#links schiebe Operation:
+MULv3_go:   lui r1, 0
+            add r1, r1, r4          #r1 = r4
+            lw r2, r7, 2            #r1 poppen
+            
+            movi r5, shift_l        #call shift_l
+            jalr r6, r5             #Ergebnis in r3
+            
+#Addition durchführen:
+            lui r1, 0
+            add r1, r1, r3          #r1 = r3
+            
+            lw r3, r7, 0            #r3 poppen
+            addi r7, r7, 1
+            lw r2, r7, 0            #r3 poppen
+            addi r7, r7, 1
+            addi r7, r7, 1          #SP + 1, weil r1 auch gepusht war
+            
+            bne r7, r0, MULv3_back  #goto MULv3_back
+
+            
+            
+            
+            
+halt #debug
+            
+            
+MULv3_finish: lw r2, r7, 0            #r2 poppen
+            addi r7, r7, 1
+            lw r1, r7, 0            #r1 poppen
+            addi r7, r7, 1
+            lw r7, r7, 0            #SP poppen
+            addi r7, r7, 1
+            
+            jalr r5, r6             #zurück zur aufrufenden Instanz            
+            
 ######################################################################
 #shift_l: r1 Shiftweite, r2 Wort, r3 Ergebnis
 ######################################################################
