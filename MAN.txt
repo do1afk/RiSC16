@@ -13,7 +13,7 @@ Funktionsaufruf:
     Definiere r5, r6 für Programmaufrufe
     1. hole Adresse von call in r1:
         movi r5, call 
-    2. springe zu Adresse in r1, speichere Rücksprungadresse in r6:
+    2. springe zu Adresse in r5, speichere Rücksprungadresse in r6:
         jalr r6, r5
     3. spring wieder zurück: (Hier ist die Rücksprungadresse (r5) unwichtig)
         jalr r5, r6
