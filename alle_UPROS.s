@@ -52,7 +52,9 @@ Start:      lui r1, 0
 #   Verwendung: r3 = r1 * r2
 ######################################################################
 
-MULv2:      addi r7, r7, -1         #r1 pushen
+MULv2:      addi r7, r7, -1         #SP pushen
+            sw r7, r7, 0
+            addi r7, r7, -1         #r1 pushen
             sw r1, r7, 0
             addi r7, r7, -1         #r2 pushen
             sw r2, r7, 0
@@ -74,6 +76,8 @@ MUL_finish: lw r2, r7, 0            #r2 poppen
             addi r7, r7, 1
             lw r1, r7, 0            #r1 poppen
             addi r7, r7, 1
+            lw r7, r7, 0            #SP poppen
+            addi r7, r7, 1
             
             jalr r5, r6             #zurück zur aufrufenden Instanz
 
@@ -81,7 +85,9 @@ MUL_finish: lw r2, r7, 0            #r2 poppen
 #shift_l: r1 Shiftweite, r2 Wort, r3 Ergebnis
 ######################################################################
 
-shift_l:    addi r7, r7, -1         #r1 pushen
+shift_l:    addi r7, r7, -1         #SP pushen
+            sw r7, r7, 0
+            addi r7, r7, -1         #r1 pushen
             sw r1, r7, 0
             addi r7, r7, -1         #r2 pushen
             sw r2, r7, 0
@@ -100,6 +106,8 @@ shift_loop: add r3, r3, r3          #addiere r3 mit r3
 stl_finish: lw r2, r7, 0            #r2 poppen
             addi r7, r7, 1
             lw r1, r7, 0            #r1 poppen
+            addi r7, r7, 1
+            lw r7, r7, 0            #SP poppen
             addi r7, r7, 1
             
             jalr r5, r6             #zurück zur aufrufenden Instanz
