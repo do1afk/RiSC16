@@ -15,6 +15,7 @@
             bne r7, r0, Start      #übergehe die .fill
         
 Stack_adr:  .fill 32767
+debug_counter: .fill 0
 
               
 Start:      lui r1, 0
@@ -37,11 +38,12 @@ Start:      lui r1, 0
             addi r1, r1, 4
             addi r2, r2, 4
             
+#halt #debug
             movi r5, MULv3
             jalr r6, r5
             
-            lui r1, 0
-            lui r2, 0
+            lui r1, -1
+            lui r2, -1
             
             
 ##call shift_l: r3 = r2 r1 mal geshiftet
@@ -97,18 +99,23 @@ MUL_finish: lw r2, r7, 0            #r2 poppen
 #MULv3:     bitweise MUL
 #   Verwendung: r3 = r1 * r2
 ######################################################################
-MULv3:      addi r7, r7, -1         #SP pushen
-            sw r7, r7, 0
-            addi r7, r7, -1         #r1 pushen
+#addi r7, r7, -1         #SP pushen, rausgenaommen, weils das decrementieren des SP und dann sich selbst pushen Probleme machen könnte
+#sw r7, r7, 0
+
+MULv3:      addi r7, r7, -1         #r1 pushen
             sw r1, r7, 0
             addi r7, r7, -1         #r2 pushen
             sw r2, r7, 0
-#halt #debug
+
             lui r3, 0               #lade r3 mit 0, sicherheitshalber    
             lui r4, 0               #r4 nullen
-            addi r4, r4, 8          #r4 mit bitbreite laden
+            addi r4, r4, 4          #r4 mit bitbreite laden
             
 MULv3_loop: addi r4, r4, -1         #r4 dekrementieren
+
+lw r5, r0, debug_counter
+addi r5, r5, 1
+sw r5, r0, debug_counter
 #halt #debug            
 #Maske generieren:
             addi r7, r7, -1         #r1 pushen
@@ -117,26 +124,32 @@ MULv3_loop: addi r4, r4, -1         #r4 dekrementieren
             sw r2, r7, 0
             addi r7, r7, -1         #r3 pushen
             sw r3, r7, 0
-            
+           
             lui r1, 0               #r1 nullen
             add r1, r1, r4          #r1 = r4; das ist shiftweite
             
             lui r2, 0           
             addi r2, r2, 1          #r2 mit "1" laden
-            
+           
+            addi r7, r7, -1         #Rücksprungadresse pushen
+            sw r6, r7, 0
             movi r5, shift_l        #call shift_l
             jalr r6, r5             #danach ist Maske in r3
-            
+            lw r6, r7, 0            #Rücksprungadresse poppen
+            addi r7, r7, 1
+             
 #Maskieren:
             lw r2, r7, 1            #r2 poppen
             nand r3, r3, r2         #maskierung via nand
             nand r3, r3, r3         #negieren
-
+#halt #debug
 #ist r4 tes bit null?
-            bne r4, r0, MULv3_go    #if(r4 != 0) goto MULv3_go;
+            bne r3, r0, MULv3_go    #if(r3 != 0) goto MULv3_go;
+
+#halt #debug
 #Ende erreicht?
 MULv3_back: bne r4, r0, MULv3_loop  #wenn nein, fang von vorn an!
-
+#halt #debug 
             bne r7, r0, MULv3_finish #fertig!
             
             
@@ -144,9 +157,13 @@ MULv3_back: bne r4, r0, MULv3_loop  #wenn nein, fang von vorn an!
 MULv3_go:   lui r1, 0
             add r1, r1, r4          #r1 = r4
             lw r2, r7, 2            #r1 poppen
-            
+halt #debug 
+            addi r7, r7, -1         #Rücksprungadresse pushen
+            sw r6, r7, 0
             movi r5, shift_l        #call shift_l
             jalr r6, r5             #Ergebnis in r3
+            lw r6, r7, 0            #Rücksprungadresse poppen
+            addi r7, r7, 1
             
 #Addition durchführen:
             lui r1, 0
@@ -164,25 +181,28 @@ MULv3_go:   lui r1, 0
             
             
             
-halt #debug
+#halt #debug
             
             
 MULv3_finish: lw r2, r7, 0            #r2 poppen
             addi r7, r7, 1
             lw r1, r7, 0            #r1 poppen
             addi r7, r7, 1
-            lw r7, r7, 0            #SP poppen
-            addi r7, r7, 1
-            
+            #lw r7, r7, 0            #SP poppen
+            #addi r7, r7, 1
+#lui r6, 0 #debug
+#addi r6 r6, 14 #debug
+#halt #debug            
             jalr r5, r6             #zurück zur aufrufenden Instanz            
             
 ######################################################################
 #shift_l: r1 Shiftweite, r2 Wort, r3 Ergebnis
 ######################################################################
-
-shift_l:    addi r7, r7, -1         #SP pushen
-            sw r7, r7, 0
-            addi r7, r7, -1         #r1 pushen
+#addi r7, r7, -1         #SP pushen, siehe MULv3
+            #sw r7, r7, 0
+            
+            
+shift_l:    addi r7, r7, -1         #r1 pushen
             sw r1, r7, 0
             addi r7, r7, -1         #r2 pushen
             sw r2, r7, 0
@@ -202,7 +222,7 @@ stl_finish: lw r2, r7, 0            #r2 poppen
             addi r7, r7, 1
             lw r1, r7, 0            #r1 poppen
             addi r7, r7, 1
-            lw r7, r7, 0            #SP poppen
-            addi r7, r7, 1
+            #lw r7, r7, 0            #SP poppen
+            #addi r7, r7, 1
             
             jalr r5, r6             #zurück zur aufrufenden Instanz
