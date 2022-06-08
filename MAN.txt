@@ -4,8 +4,8 @@ Registerverwendung:
     -r1: zur Wertübergabe, sieht nach UPRO noch gleich aus
     -r2: zur Wertübergabe, sieht nach UPRO noch gleich aus
     -r3: Ergebnisregister
-    -r4:
-    -r5:
+    -r4: Zählregister innerhalb von Funktionen
+    -r5: don't-care
     -r6: Rücksprungadressen
     -r7: Stackpointer
 
@@ -13,7 +13,7 @@ Funktionsaufruf:
     Definiere r5, r6 für Programmaufrufe
     1. hole Adresse von call in r1:
         movi r5, call 
-    2. springe zu Adresse in r1, speichere Rücksprungadresse in r2:
+    2. springe zu Adresse in r5, speichere Rücksprungadresse in r6:
         jalr r6, r5
     3. spring wieder zurück: (Hier ist die Rücksprungadresse (r5) unwichtig)
         jalr r5, r6
@@ -29,7 +29,17 @@ Stack:
                   addi r7, r7, 1           #SP erhöhen, damit SP immer auf letztes Ereignis zeigt
           
           
-shift_l 
+shift_l: 
     -shiftweite (n) in r1
     -zu shiftendes Wort (a) in r2
+    -Ergebnis wird in r3 zurück gegeben
+    
+MULv2:  (MUL via add)
+    -Multiplikator in r1
+    -Multiplikant in r2
+    -Ergebnis wird in r3 zurück gegeben
+    
+MULv3:  (bitweise MUL)
+    -Multiplikator in r1
+    -Multiplikant in r2
     -Ergebnis wird in r3 zurück gegeben
