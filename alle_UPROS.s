@@ -35,8 +35,8 @@ Start:      lui r1, 0
 
 
 #call MULv3: r3 = r1 * r2
-            addi r1, r1, 12
-            addi r2, r2, 10
+            addi r1, r1, 1
+            addi r2, r2, 3
             
 #halt #debug
             movi r5, MULv3
@@ -106,8 +106,31 @@ MULv3:      addi r7, r7, -1         #r1 pushen
             sw r1, r7, 0
             addi r7, r7, -1         #r2 pushen
             sw r2, r7, 0
+            
+#überprüfe, ob beides negative Zahlen sind => beide MSB gesetzt?
+            lui r3, 32768           #lade Maske für MSB in r3
+            nand r3, r1, r3         #maskiere r1
+            nand r3, r3, r3
+            
+            bne r3, r0, MULv3_inv1   #wenn MSB gesetzt ist gehe weiter
+            bne r7, r0 MULv3_start  #sonst leg los
+            
+MULv3_inv1:  nand r3, r2, r3         #maskiere r2
+            nand r3, r3, r3
+            
+            bne r3, r0, MULv3_inv2  #wenn MSB gesetzt ist gehe weiter
+            bne r7, r0 MULv3_start  #sonst leg los
+            
+#ZK umwandlung rückgängig machen
+MULv3_inv2: addi r1, r1, -1         #r1 - 1
+            addi r2, r2, -1         #r2 - 1
+            nand r1, r1, r1         #r1 invertieren
+            nand r2, r2, r2         #r2 invertieren
+            
+            
+  #halt #debug
 
-            lui r3, 0               #lade r3 mit 0, sicherheitshalber    
+MULv3_start: lui r3, 0               #lade r3 mit 0, sicherheitshalber    
             lui r4, 0               #r4 nullen
             addi r4, r4, 8          #r4 mit bitbreite laden
            
