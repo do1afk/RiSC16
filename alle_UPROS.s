@@ -35,8 +35,8 @@ Start:      lui r1, 0
 
 
 #call MULv3: r3 = r1 * r2
-            addi r1, r1, 4
-            addi r2, r2, 4
+            addi r1, r1, 12
+            addi r2, r2, 10
             
 #halt #debug
             movi r5, MULv3
@@ -109,16 +109,19 @@ MULv3:      addi r7, r7, -1         #r1 pushen
 
             lui r3, 0               #lade r3 mit 0, sicherheitshalber    
             lui r4, 0               #r4 nullen
-            addi r4, r4, 4          #r4 mit bitbreite laden
-            
+            addi r4, r4, 8          #r4 mit bitbreite laden
+           
 MULv3_loop: addi r4, r4, -1         #r4 dekrementieren
 
 lw r5, r0, debug_counter
 addi r5, r5, 1
 sw r5, r0, debug_counter
+#addi r5, r5, -3
+#bne r5, r0, debug_weiter
+#halt
 #halt #debug            
 #Maske generieren:
-            addi r7, r7, -1         #r1 pushen
+debug_weiter:            addi r7, r7, -1         #r1 pushen
             sw r1, r7, 0
             addi r7, r7, -1         #r2 pushen
             sw r2, r7, 0
@@ -145,7 +148,14 @@ sw r5, r0, debug_counter
 #halt #debug
 #ist r4 tes bit null?
             bne r3, r0, MULv3_go    #if(r3 != 0) goto MULv3_go;
-
+            #register aufräumen!
+            lw r3, r7, 0            #r3 poppen
+            addi r7, r7, 1
+            lw r2, r7, 0            #r2 poppen
+            addi r7, r7, 1
+            lw r1, r7, 0            #r1 poppen
+            addi r7, r7, 1
+            
 #halt #debug
 #Ende erreicht?
 MULv3_back: bne r4, r0, MULv3_loop  #wenn nein, fang von vorn an!
@@ -157,24 +167,28 @@ MULv3_back: bne r4, r0, MULv3_loop  #wenn nein, fang von vorn an!
 MULv3_go:   lui r1, 0
             add r1, r1, r4          #r1 = r4
             lw r2, r7, 2            #r1 poppen
-halt #debug 
+
             addi r7, r7, -1         #Rücksprungadresse pushen
             sw r6, r7, 0
             movi r5, shift_l        #call shift_l
             jalr r6, r5             #Ergebnis in r3
             lw r6, r7, 0            #Rücksprungadresse poppen
             addi r7, r7, 1
-            
+#halt #debug             
 #Addition durchführen:
             lui r1, 0
-            add r1, r1, r3          #r1 = r3
+            add r1, r1, r3          #r1 = r3; geshiftetes Ergebnis sichern
             
             lw r3, r7, 0            #r3 poppen
             addi r7, r7, 1
-            lw r2, r7, 0            #r3 poppen
-            addi r7, r7, 1
-            addi r7, r7, 1          #SP + 1, weil r1 auch gepusht war
             
+            add r3, r3 ,r1          #addition durchführen
+
+            lw r2, r7, 0            #r2 poppen
+            addi r7, r7, 1
+            lw r1, r7, 0            #r1 poppen
+            addi r7, r7, 1          #SP + 1, weil r1 auch gepusht war => hole r1 doch raus!
+ #halt #debug           
             bne r7, r0, MULv3_back  #goto MULv3_back
 
             
