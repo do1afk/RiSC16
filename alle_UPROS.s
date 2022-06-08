@@ -1,7 +1,8 @@
 ######################################################################
 #implementierte Unterprogramme:
-#       -MUL via add
-#       -shift_l
+#       -MUL via add    (call MULv2)
+#       -bitweise MUL   (call MULv3)
+#       -shift_l        (call shift_l)
 ######################################################################
 
 #initialisiere Stack
