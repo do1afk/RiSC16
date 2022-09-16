@@ -1,0 +1,17 @@
+[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
+[0] Config.pm:307> INFO - Logfile is 'Projektarbeit.blg'
+[134] biber:322> INFO - === Fr Sep 16, 2022, 15:55:05
+[160] Biber.pm:415> INFO - Reading 'Projektarbeit.bcf'
+[279] Biber.pm:943> INFO - Found 1 citekeys in bib section 0
+[302] Biber.pm:4256> INFO - Processing section 0
+[303] Utils.pm:75> INFO - Globbing data source 'literatur.bib'
+[303] Utils.pm:91> INFO - Globbed data source 'literatur.bib' to literatur.bib
+[322] Biber.pm:4455> INFO - Looking for bibtex format file 'literatur.bib' for section 0
+[323] bibtex.pm:1653> INFO - LaTeX decoding ...
+[325] bibtex.pm:1471> INFO - Found BibTeX data source 'literatur.bib'
+[372] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[372] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[373] Biber.pm:4084> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'de-DE'
+[373] Biber.pm:4090> INFO - No sort tailoring available for locale 'de-DE'
+[375] bbl.pm:652> INFO - Writing 'Projektarbeit.bbl' with encoding 'UTF-8'
+[376] bbl.pm:755> INFO - Output to Projektarbeit.bbl
