@@ -19,27 +19,33 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
-    \entry{tl084}{book}{}
+    \entry{MULv3}{book}{}
       \name{author}{1}{}{%
-        {{hash=98891ef37ae74f3a00ae9a7c9c316e78}{%
-           family={Instruments},
-           familyi={I\bibinitperiod},
-           given={Texas},
-           giveni={T\bibinitperiod}}}%
+        {{hash=72ca8b81136428023bf4661f0d29957b}{%
+           family={Holzer},
+           familyi={H\bibinitperiod},
+           given={Roland},
+           giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{98891ef37ae74f3a00ae9a7c9c316e78}
-      \strng{fullhash}{98891ef37ae74f3a00ae9a7c9c316e78}
-      \strng{bibnamehash}{98891ef37ae74f3a00ae9a7c9c316e78}
-      \strng{authorbibnamehash}{98891ef37ae74f3a00ae9a7c9c316e78}
-      \strng{authornamehash}{98891ef37ae74f3a00ae9a7c9c316e78}
-      \strng{authorfullhash}{98891ef37ae74f3a00ae9a7c9c316e78}
-      \field{labelalpha}{Ins04}
-      \field{sortinit}{I}
-      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \strng{namehash}{72ca8b81136428023bf4661f0d29957b}
+      \strng{fullhash}{72ca8b81136428023bf4661f0d29957b}
+      \strng{bibnamehash}{72ca8b81136428023bf4661f0d29957b}
+      \strng{authorbibnamehash}{72ca8b81136428023bf4661f0d29957b}
+      \strng{authornamehash}{72ca8b81136428023bf4661f0d29957b}
+      \strng{authorfullhash}{72ca8b81136428023bf4661f0d29957b}
+      \field{labelalpha}{Hol22}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{[...], tl084, [...] JFET-INPUT operational amplifiers}
-      \field{year}{2004}
+      \field{title}{Multiplizierwerk}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb http://www.holzers-familie.de/schule/book/Multiplikation.html#:~:text=Multiplizierwerk,es%20wieder%20die%20erste%20Zahl.
+      \endverb
+      \verb{url}
+      \verb http://www.holzers-familie.de/schule/book/Multiplikation.html#:~:text=Multiplizierwerk,es%20wieder%20die%20erste%20Zahl.
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
