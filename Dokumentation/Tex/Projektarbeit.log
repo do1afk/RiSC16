@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/TeX Live for SUSE Linux) (preloaded format=pdflatex 2022.6.30)  17 OCT 2022 13:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/TeX Live for SUSE Linux) (preloaded format=pdflatex 2022.6.30)  18 OCT 2022 11:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,62 +709,72 @@ Package biblatex Info: Reference segment=0 on input line 23.
 \tf@toc=\write4
 \openout4 = `Projektarbeit.toc'.
 
- [2] [1]
-<Stack_init.png, id=25, 945.5325pt x 463.7325pt>
+ [2]
+
+LaTeX Warning: Citation 'MIPS' on page 1 undefined on input line 66.
+
+[1]
+<Stack_init.png, id=24, 945.5325pt x 463.7325pt>
 File: Stack_init.png Graphic file (type png)
 <use Stack_init.png>
-Package pdftex.def Info: Stack_init.png  used on input line 88.
+Package pdftex.def Info: Stack_init.png  used on input line 87.
 (pdftex.def)             Requested size: 345.0pt x 169.20787pt.
-<bitweise_Mul_Prinzip.png, id=26, 548.0475pt x 337.26pt>
+ [2 <./Stack_init.png (PNG copy)>]
+<bitweise_Mul_Prinzip.png, id=30, 548.0475pt x 337.26pt>
 File: bitweise_Mul_Prinzip.png Graphic file (type png)
 <use bitweise_Mul_Prinzip.png>
-Package pdftex.def Info: bitweise_Mul_Prinzip.png  used on input line 108.
+Package pdftex.def Info: bitweise_Mul_Prinzip.png  used on input line 107.
 (pdftex.def)             Requested size: 345.0pt x 212.31024pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./Stack_init.png (PNG copy)>] [3 <./bitweise_Mul_Prinzip.png>] [4]
+ [3 <./bitweise_Mul_Prinzip.png>] [4]
 <Manual.png, id=42, 385.44pt x 429.85594pt>
 File: Manual.png Graphic file (type png)
 <use Manual.png>
-Package pdftex.def Info: Manual.png  used on input line 153.
+Package pdftex.def Info: Manual.png  used on input line 152.
 (pdftex.def)             Requested size: 345.0pt x 384.75475pt.
- [5 <./manual.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 163--165
+
+[5 <./manual.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 162--164
 
  []
 
 <Mulv2.png, id=46, 417.56pt x 855.195pt>
 File: Mulv2.png Graphic file (type png)
 <use Mulv2.png>
-Package pdftex.def Info: Mulv2.png  used on input line 175.
+Package pdftex.def Info: Mulv2.png  used on input line 174.
 (pdftex.def)             Requested size: 189.75105pt x 388.63152pt.
 [6 <./MULv2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 185--187
+Underfull \hbox (badness 10000) in paragraph at lines 184--186
 
  []
 
 <MULv3-1.png, id=51, 446.41782pt x 437.38406pt>
 File: MULv3-1.png Graphic file (type png)
 <use MULv3-1.png>
-Package pdftex.def Info: MULv3-1.png  used on input line 197.
+Package pdftex.def Info: MULv3-1.png  used on input line 196.
 (pdftex.def)             Requested size: 189.75105pt x 185.90912pt.
 [7 <./MULv3-1.png>]
 <MULv3-2.png, id=56, 375.65344pt x 827.34094pt>
 File: MULv3-2.png Graphic file (type png)
 <use MULv3-2.png>
-Package pdftex.def Info: MULv3-2.png  used on input line 206.
+Package pdftex.def Info: MULv3-2.png  used on input line 205.
 (pdftex.def)             Requested size: 189.75105pt x 417.91118pt.
  [8 <./MULv3-2.png>]
-Overfull \hbox (53.3303pt too wide) in paragraph at lines 219--219
+Overfull \hbox (53.3303pt too wide) in paragraph at lines 218--218
 \OT1/cmtt/m/n/10 familie . de / schule / book / Multiplikation . html# : [] : t
 ext = Multiplizierwerk ,[]
  []
 
 [9] (./Projektarbeit.aux)
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                Projektarbeit
+(biblatex)                and rerun LaTeX afterwards.
 
 Package logreq Info: Writing requests to 'Projektarbeit.run.xml'.
 \openout1 = `Projektarbeit.run.xml'.
@@ -773,11 +783,11 @@ Package logreq Info: Writing requests to 'Projektarbeit.run.xml'.
 Here is how much of TeX's memory you used:
  14489 strings out of 480031
  278312 string characters out of 5884516
- 1017369 words of memory out of 5000000
+ 1018379 words of memory out of 5000000
  31613 multiletter control sequences out of 15000+600000
  409348 words of font info for 48 fonts, out of 8000000 for 9000
  477 hyphenation exceptions out of 8191
- 72i,6n,78p,832b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 72i,6n,78p,1056b,2241s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf
 /fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmcsc1
@@ -790,7 +800,7 @@ ic/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmti
 10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/
 texmf/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sfrm1000.pfb>
-Output written on Projektarbeit.pdf (12 pages, 407625 bytes).
+Output written on Projektarbeit.pdf (12 pages, 410099 bytes).
 PDF statistics:
  111 PDF objects out of 1000 (max. 8388607)
  72 compressed objects within 1 object stream

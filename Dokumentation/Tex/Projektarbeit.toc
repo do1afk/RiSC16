@@ -5,21 +5,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Aufgabenstellung}{1}{}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Erstellte Routinen}{1}{}%
+\contentsline {section}{\numberline {3}Erstellte Routinen}{2}{}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Stackoperationen}{1}{}%
+\contentsline {subsection}{\numberline {3.1}Stackoperationen}{2}{}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}Multiplikation via Addition}{2}{}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Bitweise Multiplikation}{2}{}%
+\contentsline {subsection}{\numberline {3.3}Bitweise Multiplikation}{3}{}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Zusammenfassung}{3}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Verwendete Abkürzungen}{3}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Allgemeine Abkürzungen}{3}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Technische Abkürzungen}{4}{}%
+\contentsline {section}{\numberline {4}Zusammenfassung}{4}{}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A}Anhang}{5}{}%
 \defcounter {refsection}{0}\relax 
