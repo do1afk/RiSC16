@@ -19,7 +19,39 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
-    \entry{MULv3}{book}{}
+    \entry{MIPS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=843876b0cd22755b5ac91e331bc3061b}{%
+           family={AKTUELL},
+           familyi={A\bibinitperiod},
+           given={HARDAWARE},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{843876b0cd22755b5ac91e331bc3061b}
+      \strng{fullhash}{843876b0cd22755b5ac91e331bc3061b}
+      \strng{bibnamehash}{843876b0cd22755b5ac91e331bc3061b}
+      \strng{authorbibnamehash}{843876b0cd22755b5ac91e331bc3061b}
+      \strng{authornamehash}{843876b0cd22755b5ac91e331bc3061b}
+      \strng{authorfullhash}{843876b0cd22755b5ac91e331bc3061b}
+      \field{labelalpha}{AKT22}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MIPS-Architektur}
+      \field{urlday}{18}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.hardware-aktuell.com/lexikon/MIPS-Architektur
+      \endverb
+      \verb{url}
+      \verb https://www.hardware-aktuell.com/lexikon/MIPS-Architektur
+      \endverb
+    \endentry
+    \entry{MULv3}{online}{}
       \name{author}{1}{}{%
         {{hash=72ca8b81136428023bf4661f0d29957b}{%
            family={Holzer},
@@ -39,12 +71,48 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Multiplizierwerk}
+      \field{urlday}{18}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
       \field{year}{2022}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb http://www.holzers-familie.de/schule/book/Multiplikation.html#:~:text=Multiplizierwerk,es%20wieder%20die%20erste%20Zahl.
       \endverb
       \verb{url}
       \verb http://www.holzers-familie.de/schule/book/Multiplikation.html#:~:text=Multiplizierwerk,es%20wieder%20die%20erste%20Zahl.
+      \endverb
+    \endentry
+    \entry{JACOBInstr}{online}{}
+      \name{author}{1}{}{%
+        {{hash=56a0c4b6cd87ff4d1ccca5cc1d1710fa}{%
+           family={Jacob},
+           familyi={J\bibinitperiod},
+           given={Bruce},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{56a0c4b6cd87ff4d1ccca5cc1d1710fa}
+      \strng{fullhash}{56a0c4b6cd87ff4d1ccca5cc1d1710fa}
+      \strng{bibnamehash}{56a0c4b6cd87ff4d1ccca5cc1d1710fa}
+      \strng{authorbibnamehash}{56a0c4b6cd87ff4d1ccca5cc1d1710fa}
+      \strng{authornamehash}{56a0c4b6cd87ff4d1ccca5cc1d1710fa}
+      \strng{authorfullhash}{56a0c4b6cd87ff4d1ccca5cc1d1710fa}
+      \field{labelalpha}{Jac00}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The RiSC-16 Instruction-Set Architecture}
+      \field{urlday}{18}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2000}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://user.eng.umd.edu/~blj/RiSC/RiSC-isa.pdf
+      \endverb
+      \verb{url}
+      \verb https://user.eng.umd.edu/~blj/RiSC/RiSC-isa.pdf
       \endverb
     \endentry
   \enddatalist

@@ -1,26 +1,14 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {ngerman}{}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Einleitung}{1}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Aufgabenstellung}{1}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Erstellte Routinen}{2}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Stackoperationen}{2}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Multiplikation via Addition}{2}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Bitweise Multiplikation}{3}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Zusammenfassung}{4}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Anhang}{5}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1}Verwendung der entworfenen Routinen}{5}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.2}Multiplikation via Addition: (MULv2)}{6}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.3}Bitweise Multiplikation: (MULv3)}{7}{}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{Literaturverzeichnis}{9}{}%
+\contentsline {section}{\numberline {1}Einleitung}{1}%
+\contentsline {section}{\numberline {2}Aufgabenstellung}{1}%
+\contentsline {section}{\numberline {3}Erstellte Routinen}{2}%
+\contentsline {subsection}{\numberline {3.1}Allgemein}{2}%
+\contentsline {subsection}{\numberline {3.2}Multiplikation via Addition}{3}%
+\contentsline {subsection}{\numberline {3.3}Bitweise Multiplikation}{3}%
+\contentsline {section}{\numberline {4}Zusammenfassung}{4}%
+\contentsline {section}{\numberline {A}Anhang}{5}%
+\contentsline {subsection}{\numberline {A.1}Verwendung der entworfenen Routinen }{5}%
+\contentsline {subsection}{\numberline {A.2}Multiplikation via Addition: (MULv2)}{6}%
+\contentsline {subsection}{\numberline {A.3}Bitweise Multiplikation: (MULv3)}{8}%
+\contentsline {section}{Literaturverzeichnis}{11}%

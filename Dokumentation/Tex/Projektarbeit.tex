@@ -1,4 +1,4 @@
-\documentclass[fleqn, a4paper, 1pt]{article}       %fleqn => flushleft equation, setzte alle Formeln linksbündig
+\documentclass[fleqn, a4paper, 11pt]{article}       %fleqn => flushleft equation, setzte alle Formeln linksbündig
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[official]{eurosym}
@@ -13,6 +13,9 @@
 \usepackage{wrapfig}
 \usepackage{subfigure}
 \usepackage[toc,page]{appendix}
+\usepackage[left=2.5cm,right=3cm,marginpar=3cm]{geometry}
+\usepackage{paralist}
+
 
 %Für Zitate
 \usepackage[backend=biber,style=alphabetic]{biblatex}   %evtl immer mal wieder <biber Kurzbericht_ELK1_arndt-karger.bcf > laufen lassen; \cite{tl084}
@@ -29,7 +32,7 @@
 	\vspace{1cm}
 	{\huge\bfseries Dokumentation der Projektarbeit \par}
 	\vspace{1.5cm}
-	{\scshape\Large Systemroutinen für einen RiSC16 Prozessor \par}
+	{\scshape\Large Systemroutinen für einen RiSC16-Prozessor \par}
 	\vspace{2cm}
 	{\Large\itshape vorgelegt von: \\ Arndt Karger \\ Elektro-  und Informationstechnik\\ Matr.Nr. 5317057\par}
 	\vfill
@@ -63,25 +66,27 @@ Ort, Datum, Unterschrift
 \setcounter{page}{1}
 
 \section{Einleitung}
-Bei dem vorliegenden RiSC16 Prozessor handelt es sich um eine der MIPS Architektur (Microprocessor without interlocked pipeline stages) \cite{MIPS} ähnliche Architektur, welche über einen 16 Bit Adressraum, acht Register und acht Befehle verfügt. Desweiteren stehen ein Assembler von B. Jacob, ein Simulator sowie eine Hardwareimplementierung als FPGA von Prof. Dr.-Ing. W. Bonath zur Verfügung.
+Bei dem vorliegenden RiSC16-Prozessor handelt es sich um eine der MIPS-Architektur (Microprocessor without interlocked pipeline stages) \cite{MIPS} ähnliche Architektur, welche über einen 16 Bit Adressraum, acht Register und acht Befehle verfügt. Des Weiteren stehen ein Assembler von B. Jacob, ein Simulator sowie eine Hardwareimplementierung als FPGA von Prof. Dr.-Ing. W. Bonath zur Verfügung. 
 
-Der Befehlssatz gliedert sich in zwei Befehle zur Addition (addiere Register mit Register, addiere Register mit Ganzzahl), zwei Befehle für den Speicherzugriff (speichern und laden), einen Logikbefehl (\emph{nand}), einen Befehl zum laden der oberen zehn Bits einer Ganzzahl (\emph{lui}), sowie zwei Sprungbefehlen (bedingter Sprung, Sprung zu Adresse) auf. Zusatzlich zu diesen acht Befehlen stehen im Assembler zwei Makros zur Verfügung. Das eine (\emph{movi}) lädt die Adresse eines Markers in ein Register, das andere (\emph{halt} $\widehat{=}$ \emph{jalr r0, r0}) stoppt den Programmablauf. Von den acht bereitgestellten Registern sind sieben frei verwendbar. Das erste Register (r0) beinhaltet immer den Wert $0000_{hex}$.
+Der Befehlssatz gliedert sich in zwei Befehle zur Addition (addiere Register mit Register, addiere Register mit Ganzzahl), zwei Befehle für den Speicherzugriff (speichern und laden), einen Logikbefehl (\emph{nand}), einen Befehl zum laden der oberen zehn Bits einer Ganzzahl (\emph{lui}), sowie zwei Sprungbefehlen (bedingter Sprung, Sprung zu Adresse) auf. Zusätzlich zu diesen acht Befehlen stehen im Assembler mehrere Makros zur Verfügung, von welchen zwei verwendet wurden. Das eine (\emph{movi}) lädt die Adresse eines Markers in ein Register, das andere (\emph{halt} $\widehat{=}$ \emph{jalr r0, r0}) stoppt den Programmablauf . Von den acht bereitgestellten Registern sind sieben frei verwendbar. Das erste Register (r0) beinhaltet immer den Wert $0000_{hex}$ \cite[1]{JACOBInstr}.
 
 Vor Beginn der eigentlichen Projektarbeit wurde die Dokumentation von B. Jacob gesichtet, sowie die von ihm zur Verfügung gestellten Testprogramme ausgeführt.
 
 
 \section{Aufgabenstellung}
-Ziel dieser Projektarbeit war das Schreiben von Systemroutinen in Assembler, um die Funktion des Prozessors zu veranschaulichen, sowie die Hardwareimplementierung zu testen. Es sollte deutlich gemacht werden, dass auch mit dem einfachen Befehlssatz komplexe Probleme gelöst werden können. Dies wurde hier beispielhaft an zwei möglichen Multiplikationsalgorithmen durchgeführt. Die beiden Algorithmen sind die Multiplikation via Addition und eine bitweise Multiplikation. Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern beim Aufruf der Routinen möglich zu machen. Dann wurde für die Multiplikation via Addition ein Flussdiagramm erstellt und in Assembler implementiert. Nach einer kurzen Literaturrecherche über die genaue Funktion der bitweisen Multiplikation wurde auch hierfür ein Flussdiagramm erstellt und schließlich implementiert. Der Code wurde während der Entwicklungsphase in dem von Herrn Prof. Dr.-Ing. Bonath entwickelten Simulator fortlaufend getestet und mit Git getrackt.
+Ziel dieser Projektarbeit war das Schreiben von Systemroutinen in Assembler, um die Funktion des Prozessors zu veranschaulichen, sowie die Hardwareimplementierung zu testen. Es sollte deutlich gemacht werden, dass auch mit einem einfachen Befehlssatz komplexe Probleme gelöst werden können. Dies wurde hier beispielhaft an zwei möglichen Multiplikationsalgorithmen durchgeführt. Die beiden Algorithmen sind die Multiplikation via Addition und eine bitweise Multiplikation. 
+
+Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern beim Aufruf der Routinen möglich zu machen. Dann wurde für die Multiplikation via Addition ein Flussdiagramm (siehe \ref{A.MULv2}) erstellt und in Assembler implementiert. Nach einer kurzen Literaturrecherche über die genaue Funktion der bitweisen Multiplikation wurde auch hierfür ein Flussdiagramm erstellt (siehe \ref{A.MULv3}) und schließlich implementiert. Der Code wurde während der Entwicklungsphase in dem von Herrn Prof. Dr.-Ing. Bonath entwickelten Simulator fortlaufend getestet und mit Git getrackt.
 
 \section{Erstellte Routinen}
-\subsection{Stackoperationen}
+\subsection{Allgemein}
 
-Die RiSC16 Architektur verfügt über keinerlei Stackoperationen. Daher wird beim Programmstart ein Stack in Software initialisiert. Das Register r7 dient hierbei als Stackpointer (SP). Dieses wird zuerst mit der Startadresse des Stack (hier $7FFF_{hex}$) beschrieben. Dieses Date steht hart im Speicher und wird über den Marker \glqq Stack\_adr\grqq \ abgerufen (vergleiche (vgl.) Abbildung (Abb.) \ref{fig:Stack}).
+Die RiSC16 Architektur verfügt über keinerlei Stackoperationen. Daher wird beim Programmstart ein Stack in Software initialisiert. Das Register r7 dient hierbei als Stackpointer (SP). Dieses wird zuerst mit der Startadresse des Stack (hier $7FFF_{hex}$) beschrieben. Dieses Date steht hart im Speicher und wird über den Marker \glqq Stack\_adr\grqq \ abgerufen (siehe  Abbildung (Abb.) \ref{fig:Stack}).
 Der Stack wurde  \glqq Bottom-Up\grqq \ implementiert, was bedeutet, dass er zu kleiner werdenden Adressen hin wächst (von unten nach oben). Das Register r7 zeigt immer auf den Top-Of-Stack (TOS), die Grenzen des Stack werden nicht überwacht.
 
-Man erreicht die Funktion \emph{push}  durch einmaliges dekrementieren des SP und speichern eines Registers mit dem Befehl \emph{sw} (store word) (vgl. Abb. \ref{fig:Stack} line 12 folgende). Analog \emph{pop} durch laden eines Dates aus dem Speicher via \emph{lw} (load word) und anschließendem inkrementieren des SP. Eine indirekte Adressierung ist mittels eines Immediate-Offsets möglich (vgl. Abb. \ref{fig:Stack} line 14).
+Man erreicht die Funktion \emph{push}  durch einmaliges dekrementieren des SP und speichern eines Registers mit dem Befehl \emph{sw} (store word) (siehe Abb. \ref{fig:Stack} line 12 folgende). Analog \emph{pop} durch laden eines Dates aus dem Speicher via \emph{lw} (load word) und anschließendem inkrementieren des SP. Eine indirekte Adressierung ist mittels eines Immediate-Offsets möglich (siehe Abb. \ref{fig:Stack} line 14).
 
-Prinzipiell ist das ausreichend um mit dem Stack arbeiten zu können. Um eine größere Lesbarkeit beim debuggen zu schaffen, werden in der Initialsierung auch noch der Anfang sowie das Ende des Stacks markiert. Dazu wird in das Register r1 das Date $-1_{dez}\ \widehat{=}\ FFFF_{hex}$ geschrieben und an die erste und letzte Adresse im Stack gepusht (vgl. Abb. \ref{fig:Stack} line 11 fort folgende).
+Prinzipiell ist das ausreichend um mit dem Stack arbeiten zu können. Um eine größere Lesbarkeit beim debuggen zu schaffen, werden in der Initialsierung auch noch der Anfang sowie das Ende des Stacks markiert. Dazu wird in das Register r1 das Date $-1_{dez}\ \widehat{=}\ FFFF_{hex}$ geschrieben und an die erste und letzte Adresse im Stack gepusht (siehe Abb. \ref{fig:Stack} line 11 fort folgende).
 
 \begin{figure}[h]
     \includegraphics[width =1\textwidth]{Stack_init.png}
@@ -89,6 +94,15 @@ Prinzipiell ist das ausreichend um mit dem Stack arbeiten zu können. Um eine gr
 \label{fig:Stack}
 \end{figure}
 
+Desweiteren wurde eine Übergabekonvention erarbeitet, die folgendes vorsieht: Es können bis zu zwei Werte an Unterprogramme übergeben werden. Diese müssen vor Aufruf des Unterprogramms in die Register r1 und r2 geladen werden (siehe Abb. \ref{fig:FKT} line 39 folgende). Das Unterprogramm hat dafür Sorge zu tragen, dass nach dem Rücksprung die Registerinhalte der beiden Übergaberegister unverändert sind. Das Unterprogramm gibt einen Rückgabewert im Register r3 zurück (siehe \ref{A.Man}).
+
+Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt die Adresse eines Markers in ein angebenenes Register (hier r5) (siehe Abb. \ref{fig:FKT} line 43). Im Anschluss erflogt ein Sprung durch den Befehl \emph{jalr} zu der Adresse aus r5. Die Rücksprungadresse wird in r6 abgelegt (siehe Abb. \ref{fig:FKT} line 44).
+
+\begin{figure}[h]
+    \includegraphics[width =0.45\textwidth]{Funktionsaufruf.png}
+\caption{Aufruf des Unterprogramms MULv3}
+\label{fig:FKT}
+\end{figure}
 
 
 \subsection{Multiplikation via Addition}
@@ -97,144 +111,170 @@ Eine Möglichkeit eine Multiplikation zu implementieren besteht darin den Multip
 \subsection{Bitweise Multiplikation}
 Eine andere Möglichkeit der Multiplikation besteht darin, zwei Zahlen bitweise zu multiplizieren. Der entwickelte Multiplikationsalgorithmus funktioniert nach folgendem Prinzip: 
 
-Betrachten wir beispielhaft die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$), eine ist der Multiplikant, die andere der Multiplikator. Zuerst untersuchen wir das Most Significant Bit (MSB) des Multiplikators, also das siebte Bit. Ist dieses gesetzt, so schieben wir den Multiplikanten um die Wertigkeit des untersuchten Bits (hier sieben) nach links und addieren das auf das Ergebnisregister. Ist es nicht gesetzt, so geschieht nichts. \cite{MULv3}
+Betrachten wir beispielhaft die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$), eine ist der Multiplikant, die andere der Multiplikator. Zuerst untersuchen wir das Most Significant Bit (MSB) des Multiplikators, also das siebte Bit. Ist dieses gesetzt, so schieben wir den Multiplikanten um die Wertigkeit des untersuchten Bits (hier sieben) nach links und addieren das auf das Ergebnisregister. Ist das MSB nicht gesetzt, so geschieht nichts. \cite{MULv3}
 
-Analog verfahren wir mit allen weiteren Bits. Diesen Prozess müssen wir für alle Bits des Multiplikators durchführen, in unserem Beispiel ergibt das acht Wiederholungen (vgl. Abb. \ref{fig:bitw_Mul_Prinzip}). Dieser Prozess ist unabhängig von der Bitbreite.
+Analog verfahren wir mit allen weiteren Bits. Diesen Prozess müssen wir für alle Bits des Multiplikators durchführen, in unserem Beispiel ergibt das acht Wiederholungen (siehe Abb. \ref{fig:bitw_Mul_Prinzip}). Dieser Prozess ist unabhängig von der Bitbreite.
 
 
 
 \begin{figure}[h]
-    \includegraphics[width =1\textwidth]{bitweise_Mul_Prinzip.png}
-\caption{Funktionsprinzip des bitweise Multiplizierers}
+    \includegraphics[width =0.8\textwidth]{bitweise_Mul_Prinzip.png}
+\caption{Funktionsprinzip der bitweisen Multiplikation}
 \label{fig:bitw_Mul_Prinzip}
 \end{figure}
 
 
 
-Da die RiSC16 Architektur über keinerlei Schiebebefehle verfügt, wurde hierfür ein kleines Unterprogramm entworfen, welches als Rückgabewert das um eine gewünschte Schrittweite geschobenes Register hat und nach folgendem Prinzip arbeitet:
+Da die RiSC16-Architektur über keinerlei Schiebebefehle verfügt, wurde hierfür ein kleines Unterprogramm entworfen, welches als Rückgabewert das um eine gewünschte Schrittweite geschobenes Register hat und nach folgendem Prinzip arbeitet:
 
 Im einfachen Binärsystem hat die Stelle $n+1$ immer genau die doppelte Wertigkeit der Stelle $n$. Bsp.: $2^2 = 4 = 2 \cdot 2^1$. Schiebt man also ein Wort nach links und füllt rechts mit Nullen auf, so verdoppelt sich die Wertigkeit des Wortes mit jedem Schiebevorgang, kommt also einer Multiplikation mit zwei gleich. Bei einer gewünschten Schrittweite $m$ verdoppelt dieses Unterprogramm das Register also $m$-mal.
 
+\textbf{Hier noch Sortieralgo erkl.}
 
 \section{Zusammenfassung}
 
-\begin{itemize}
+\begin{compactitem}
     \item Vor- und Nachteile der einzelnen Algorithmen
-\end{itemize}
+\end{compactitem}
 
 
 
 
 % \section{Verwendete Abkürzungen}
 % \subsection{Allgemeine Abkürzungen}
-% \begin{itemize}
+% \begin{compactitem}
 %     \item Abb. : Abbildung
 %     \item Bsp. : Beispiel
 %     \item f. : folgende. Bsp.: line 12f. bedeutet line 12 und 13
 %     \item ff. : fortfolgende. Bsp.: line 12ff. bedeutet line 12 bis zum Ende des Blocks
 %     \item Vgl. : vergleiche
-% \end{itemize}
+% \end{compactitem}
 %
 % \subsection{Technische Abkürzungen}
-% \begin{itemize}
+% \begin{compactitem}
 %    % \item LSB : Least Significant Bit
 %     \item MSB : Most Significant Bit
 %     \item SP : Stackpointer
 %     \item TOS : Top-Of-Stack
-% \end{itemize}
+% \end{compactitem}
 
 \newpage
 \appendix %sagt ab hier ist Anhang
 \section{Anhang}
-\subsection{Verwendung der entworfenen Routinen}
+\subsection{Verwendung der entworfenen Routinen \label{A.Man}}
 
-\begin{figure}[h]
-    \includegraphics[width =1\textwidth]{Manual.png}
-%\caption{Funktionsprinzip des bitweise Multiplizierers}
-\label{fig:bitw_Mul_Prinzip}
-\end{figure}
+
+
+ \textbf{Registerverwendung:}
+ \begin{compactitem}
+     \item r1: zur Wertübergabe, nach UPRO Aufruf unverändert
+     \item r2: zur Wertübergabe, nach UPRO Aufruf unverändert
+     \item r3: Ergebnisregister
+     \item r4: Zählregister innerhalb von Funktionen
+     \item r5: don't-care
+     \item r6: Rücksprungadressen
+     \item r7: Stackpointer
+ \end{compactitem}
+ 
+ \noindent \textbf{Funktionsaufruf:}
+     Definiere r5, r6 für Programmaufrufe
+     \begin{compactenum}
+     \item hole Adresse von UPRO in r1:\\
+         \emph{movi r5, UPRO} 
+     \item springe zu Adresse in r5, speichere Rücksprungadresse in r6:\\
+         \emph{jalr r6, r5}
+     \item spring wieder zurück: (Hier ist die Rücksprungadresse (r5) unwichtig)\\
+         \emph{jalr r5, r6 }
+     \end{compactenum}
+         
+ \noindent \textbf{Stack:}
+     Definiere SP als r7
+     \begin{compactitem}
+         \item push:
+         \begin {compactitem}
+                  \item \emph{addi r7, r7, -1}           (SP erniedrigen)
+                   \item \emph{sw  r1, r7, 0 }            (1 weg pushen)
+           \end{compactitem}         
+         \item pop:
+             \begin{compactitem}
+                   \item \emph{lw r3, r7, 0 }             (in r3 poppen) 
+                   \item \emph{addi r7, r7, 1  }          (SP erhöhen, damit SP immer auf letztes Ereignis zeigt)
+             \end{compactitem}                                 
+         \end{compactitem}  
+         
+ \noindent \textbf{shift\_l:}
+ \begin{compactitem}
+     \item shiftweite (n) in r1, zu shiftendes Wort (a) in r2
+     \item Ergebnis wird in r3 zurück gegeben
+     \end{compactitem}
+    
+ \noindent \textbf{MULv2:}  (MUL via add)
+ \begin{compactitem}
+     \item Multiplikator in r1, Multiplikant in r2
+     \item Ergebnis wird in r3 zurück gegeben
+     \end{compactitem}
+   
+ \noindent \textbf{MULv3:}  (bitweise MUL)
+ \begin{compactitem}
+     \item Multiplikator in r1, Multiplikant in r2
+     \item Ergebnis wird in r3 zurück gegeben
+     \end{compactitem}
+
 
 \newpage
 
-\subsection{Multiplikation via Addition: (MULv2)}
-Funktionalität:
+\subsection{Multiplikation via Addition: (MULv2)\label{A.MULv2}}
+Funktionalität: 
 
 Multipliziere zwei vorzeichenlose Zahlen.
-\\
+\vspace{0.25cm}
 
 \noindent Verwendung:
-\begin{itemize}
-	\item $r3 = r1 \cdot r2$
-	\item Multiplikator und Multiplikant vor Programmaufruf  in r1                und r2 laden.
-	\item Diese stehen auch nach Programmablauf unverändert                dort.
-\end{itemize}
+\begin{compactitem}
+    \item $r3 = r1 \cdot r2$
+	\item Multiplikator und Multiplikant vor Programmaufruf  in r1  und r2 laden.
+	\item Diese stehen auch nach Programmablauf unverändert   dort.
+\end{compactitem}
+\vspace{0.25cm}
+\noindent Flussdiagramm siehe nächste Seite.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width =0.55\textwidth]{Mulv2.png}
-\caption{Flussdiagramm MULv2}
-\label{fig:bitw_Mul_Prinzip}
-\end{figure}
+\thispagestyle{empty}
+\includepdf[pages=1]{MULv2.pdf}
 
 \newpage
 
-\subsection{Bitweise Multiplikation: (MULv3)}
+\subsection{Bitweise Multiplikation: (MULv3)\label{A.MULv3}}
 Funktionalität:
 
-Multipliziere zwei vorzeichenbehaftete Acht-Bit-Zahlen
-\\
+Multipliziere zwei vorzeichenbehaftete Acht-Bit-Zahlen.
+\vspace{0.25cm}
 
 \noindent Verwendung:
-\begin{itemize}
+\begin{compactitem}
 	\item $r3 = r1 \cdot r2$
 	\item Multiplikator und Multiplikant vor Programmaufruf in r1 und r2 laden.
 	\item Diese stehen auch nach Programmablauf unverändert                dort.
-\end{itemize}
-\vspace{4cm}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width =0.55\textwidth]{MULv3-1.png}
-%\caption{Flussdiagramm MULv2}
-\label{fig:bitw_Mul_Prinzip}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width =0.55\textwidth]{MULv3-2.png}
-\caption{Flussdiagramm MULv3}
-\label{fig:bitw_Mul_Prinzip}
-\end{figure}
+\end{compactitem}
+\vspace{0.25cm}
+\noindent Flussdiagramm siehe nächste Seite.
 
 
-%
+
+
+\thispagestyle{empty}
+\includepdf[pages=1]{MULv3.pdf}
+
+\thispagestyle{empty}
+\includepdf[pages=2]{MULv3.pdf}
+
 
 
 
 
 \newpage
+
 \printbibliography  % so werden Zitate angegeben: \cite{name}
 \addcontentsline{toc}{section}{Literaturverzeichnis}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
