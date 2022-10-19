@@ -6,9 +6,9 @@
 \contentsline {subsection}{\numberline {3.1}Allgemein}{2}%
 \contentsline {subsection}{\numberline {3.2}Multiplikation via Addition}{3}%
 \contentsline {subsection}{\numberline {3.3}Bitweise Multiplikation}{3}%
-\contentsline {section}{\numberline {4}Zusammenfassung}{4}%
-\contentsline {section}{\numberline {A}Anhang}{5}%
-\contentsline {subsection}{\numberline {A.1}Verwendung der entworfenen Routinen }{5}%
-\contentsline {subsection}{\numberline {A.2}Multiplikation via Addition: (MULv2)}{6}%
-\contentsline {subsection}{\numberline {A.3}Bitweise Multiplikation: (MULv3)}{8}%
-\contentsline {section}{Literaturverzeichnis}{11}%
+\contentsline {section}{\numberline {4}Zusammenfassung}{5}%
+\contentsline {section}{\numberline {A}Anhang}{6}%
+\contentsline {subsection}{\numberline {A.1}Verwendung der entworfenen Routinen }{6}%
+\contentsline {subsection}{\numberline {A.2}Multiplikation via Addition: (MULv2)}{7}%
+\contentsline {subsection}{\numberline {A.3}Bitweise Multiplikation: (MULv3)}{9}%
+\contentsline {section}{Literaturverzeichnis}{12}%
