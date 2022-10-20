@@ -76,7 +76,7 @@ Vor Beginn der eigentlichen Projektarbeit wurde die Dokumentation von B. Jacob g
 \section{Aufgabenstellung}
 Ziel dieser Projektarbeit war das Schreiben von Systemroutinen in Assembler, um die Funktion des Prozessors zu veranschaulichen, sowie die Hardwareimplementierung zu testen. Es sollte deutlich gemacht werden, dass auch mit einem einfachen Befehlssatz komplexe Probleme gelöst werden können. Dies wurde beispielhaft an zwei möglichen Multiplikationsalgorithmen durchgeführt. Die beiden Algorithmen stellen die Multiplikation via Addition und die bitweise Multiplikation dar. 
 
-Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern beim Aufruf der Routinen möglich zu machen. Dann wurde für die Multiplikation via Addition ein Flussdiagramm (siehe \ref{A.MULv2}) erstellt und in Assembler implementiert. Nach einer kurzen Literaturrecherche über die genaue Funktion der bitweisen Multiplikation wurde auch hierfür ein Flussdiagramm erstellt (siehe \ref{A.MULv3}) und schließlich implementiert. Der Code wurde während der Entwicklungsphase in dem von Herrn Prof. Dr.-Ing. Bonath entwickelten Simulator fortlaufend getestet und mit Git getrackt.
+Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern beim Aufruf der Routinen möglich zu machen. Dann wurde für die Multiplikation via Addition ein Flussdiagramm (siehe \ref{A.MULv2}) erstellt und in Assembler implementiert. Nach einer kurzen Literaturrecherche über die genaue Funktion der bitweisen Multiplikation wurde auch hierfür ein Flussdiagramm erstellt (siehe \ref{A.MULv3}) und schließlich implementiert. Der Code wurde während der Entwicklungsphase in dem von Herrn Prof. Dr.-Ing. Bonath entwickelten Simulator fortlaufend getestet und mit der Versionsverwaltungssoftware Git getrackt.
 
 \section{Erstellte Routinen}
 \subsection{Allgemein}
@@ -106,12 +106,12 @@ Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt
 
 
 \subsection{Multiplikation via Addition}
-Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet. Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator zu Null geworden ist. 
+Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet. Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator zu Null geworden ist. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jeodoch prinzipiell möglich solange nur der Multiplikant negativ ist. 
 
 \subsection{Bitweise Multiplikation}
 Eine andere Möglichkeit der Multiplikation besteht darin, zwei Zahlen bitweise zu multiplizieren. Der entwickelte Multiplikationsalgorithmus funktioniert nach folgendem Prinzip: 
 
-Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$) betrachtet. Davon ist eine Zahl der Multiplikant und die Andere der Multiplikator. Zuerst wird das Most Significant Bit (MSB), das siebte Bit, des Multiplikators untersucht. Ist dieses gesetzt, so wird der Multiplikant um die Wertigkeit des untersuchten Bits, im ersten Schritt siebenmal, nach links geschoben und addieren dies auf das Ergebnisregister. Ist das MSB nicht gesetzt, so wird die Addition nicht ausgeführt. \cite{MULv3}
+Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$) betrachtet. Davon ist eine Zahl der Multiplikant und die Andere der Multiplikator. Zuerst wird das Most Significant Bit (MSB), das siebte Bit, des Multiplikators untersucht. Ist dieses gesetzt, so wird der Multiplikant um die Wertigkeit des untersuchten Bits, im ersten Schritt siebenmal, nach links geschoben und auf das Ergebnisregister addiert. Ist das MSB nicht gesetzt, so wird die Addition nicht ausgeführt. \cite{MULv3}
 
 Analog verfahren wir mit allen weiteren Bits. Diesen Prozess müssen wir für alle Bits des Multiplikators durchführen, in unserem Beispiel ergibt das acht Wiederholungen (siehe Abbildung \ref{fig:bitw_Mul_Prinzip}). Dieser Prozess ist unabhängig von der Bitbreite, da diese lediglich die Anzahl der Wiederholungen des Algorithmus vorschreibt.
 
@@ -138,10 +138,11 @@ Analog dazu macht der Sortieralgorithmus bei der Multiplikation von zwei vorzeic
 
 \section{Zusammenfassung}
 
-\begin{compactitem}
-    \item Vor- und Nachteile der einzelnen Algorithmen
-\end{compactitem}
+Der Befehlssatz der RiSC16-Architektur umfasst nur acht Befehle. Die eigene Implementierung eines Stacks, sowie der Multiplikationsalgorithmen machten ersichtlich, dass auch Funktionen, die nicht von Beginn an im Befehlssatz enthalten sind, schnell generiert werden können. Am Beispiel des Stacks, sowie des Unterprogrammaufrufes wurde die interne Funktionsweise des RiSC16-Prozessors deutlich.
 
+Die Multiplikation via Addition war sehr einfach zu implementieren und benötigte nur wenige Programmzeilen. Ihre Durchlaufzeit bleibt jedoch abhängig vom Betrag des Multiplikators. Sie kann also nicht vorausgesehen werden. Dagegen ist die Durchlaufzeit der bitweisen Multiplikation nur abhängig von der verwendeten Bitbreite und somit immer konstant. Der Algorithmus der bitweisen Multiplikation war jedoch deutlich komplexer und benötigte wesentlich mehr Programmzeilen. Inwiefern sich die Durchlaufzeiten von bitweiser Multiplikation und Multiplikation via Addition unterscheiden bleibt ungeklärt.
+
+Bei der Betrachtung der der verschiednen Flussdiagramme fällt auf, dass die Algorithmen schnell komplex werden. Es hat sich jedoch gezeigt, dass auch diese Algorithmen mir dem einfachen Befehlssatz der RiSC16-Architektur gut lösbar sind. In einem weiteren Schritt kann der Multiplikation via Addition analog zur bitweisen Multiplikation ein Sortieralgorithmus vorgeschalten werden um eine vorzeichenbehaftete Multiplikation möglich zu machen. Desweiteren kann ein Divisionsalgorithmus entworfen werden, hierfür wird in erster Linie eine Rechtsschieben-Funktion benötigt.
 
 
 
