@@ -76,7 +76,7 @@ Vor Beginn der eigentlichen Projektarbeit wurde die Dokumentation von B. Jacob g
 \section{Aufgabenstellung}
 Ziel dieser Projektarbeit war das Schreiben von Systemroutinen in Assembler, um die Funktion des Prozessors zu veranschaulichen, sowie die Hardwareimplementierung zu testen. Es sollte deutlich gemacht werden, dass auch mit einem einfachen Befehlssatz komplexe Probleme gelöst werden können. Dies wurde beispielhaft an zwei möglichen Multiplikationsalgorithmen durchgeführt. Die beiden Algorithmen stellen die Multiplikation via Addition und die bitweise Multiplikation dar. 
 
-Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern beim Aufruf der Routinen möglich zu machen. Dann wurde für die Multiplikation via Addition ein Flussdiagramm (siehe \ref{A.MULv2}) erstellt und in Assembler implementiert. Nach einer kurzen Literaturrecherche über die genaue Funktion der bitweisen Multiplikation wurde auch hierfür ein Flussdiagramm erstellt (siehe \ref{A.MULv3}) und schließlich implementiert. Der Code wurde während der Entwicklungsphase in dem von Herrn Prof. Dr.-Ing. Bonath entwickelten Simulator fortlaufend getestet und mit der Versionsverwaltungssoftware Git getrackt.
+Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern beim Aufruf der Routinen möglich zu machen. Dann wurde für die Multiplikation via Addition ein Flussdiagramm (siehe Anhang \ref{A.MULv2}) erstellt und in Assembler implementiert. Nach einer kurzen Literaturrecherche über die genaue Funktion der bitweisen Multiplikation wurde auch hierfür ein Flussdiagramm erstellt (siehe Anhang \ref{A.MULv3}) und schließlich implementiert. Der Code wurde während der Entwicklungsphase in dem von Herrn Prof. Dr.-Ing. Bonath entwickelten Simulator fortlaufend getestet und mit der Versionsverwaltungssoftware Git getrackt.
 
 \section{Erstellte Routinen}
 \subsection{Allgemein}
@@ -94,7 +94,7 @@ Prinzipiell ist das ausreichend, um mit dem Stack arbeiten zu können. Um eine b
 \label{fig:Stack}
 \end{figure}
 
-Des Weiteren wurde eine Übergabekonvention erarbeitet, die folgendes vorsieht: Es können bis zu zwei Werte an Unterprogramme übergeben werden. Diese müssen vor Aufruf des Unterprogramms in die Register r1 und r2 geladen werden (siehe Abbildung \ref{fig:FKT} line 39 folgende). Das Unterprogramm hat die Aufgabe sicherzustellen, dass nach dem Rücksprung die Registerinhalte der beiden Übergaberegister unverändert bleiben. Der Rückgabewert wird im Register r3 zurückgegeben (siehe \ref{A.Man}).
+Des Weiteren wurde eine Übergabekonvention erarbeitet, die folgendes vorsieht: Es können bis zu zwei Werte an Unterprogramme übergeben werden. Diese müssen vor Aufruf des Unterprogramms in die Register r1 und r2 geladen werden (siehe Abbildung \ref{fig:FKT} line 39 folgende). Das Unterprogramm hat die Aufgabe sicherzustellen, dass nach dem Rücksprung die Registerinhalte der beiden Übergaberegister unverändert bleiben. Der Rückgabewert wird im Register r3 zurückgegeben (siehe Anhang \ref{A.Man}).
 
 Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt die Adresse eines Markers in ein angebenenes Register, hier r5 (siehe Abbildung \ref{fig:FKT} line 43). Im Anschluss erfolgt ein Sprung durch den Befehl \emph{jalr} zu der Adresse aus r5. Die Rücksprungadresse wird in r6 abgelegt (siehe Abbildung \ref{fig:FKT} line 44).
 
@@ -106,7 +106,7 @@ Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt
 
 
 \subsection{Multiplikation via Addition}
-Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet. Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator zu Null geworden ist. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jeodoch prinzipiell möglich solange nur der Multiplikant negativ ist. 
+Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet. Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator zu Null geworden ist. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist. 
 
 \subsection{Bitweise Multiplikation}
 Eine andere Möglichkeit der Multiplikation besteht darin, zwei Zahlen bitweise zu multiplizieren. Der entwickelte Multiplikationsalgorithmus funktioniert nach folgendem Prinzip: 
@@ -129,11 +129,11 @@ Da die RiSC16-Architektur über keinerlei Schiebebefehle verfügt, wurde hierfü
 
 Im einfachen Binärsystem hat die Stelle $n+1$ immer genau die doppelte Wertigkeit der Stelle $n$, zum Beispiel $2^2 = 4 = 2 \cdot 2^1$. Wird ein Wort nach links geschoben und  rechts mit Nullen aufgefüllt, so verdoppelt sich die Wertigkeit des Wortes mit jedem Schiebevorgang. Dies kommt einer Multiplikation mit Zwei gleich. Bei einer gewünschten Schrittweite $m$ verdoppelt dieses Unterprogramm das Register  $m$-mal.
 
-Zuletzt wurde der bitweisen Multiplikation noch ein Sortieralgorithmus vorgeschalten, welcher automatisch die richtige Registerkonfiguration für vorzeichenbehaftete Zahlen vornimmt. Der Algorithmus untersucht die Vorzeichen (MSBs) von Multiplikator und Multiplikant. Ist genau einer der Beiden negativ, stellt der Algorithmus sicher, dass Dieser im Register r1 steht (siehe \ref{A.MULv3}). 
+Zuletzt wurde der bitweisen Multiplikation noch ein Sortieralgorithmus vorgeschaltet, welcher automatisch die richtige Registerkonfiguration für vorzeichenbehaftete Zahlen vornimmt. Der Algorithmus untersucht die Vorzeichen (MSBs) von Multiplikator und Multiplikant. Ist genau einer der Beiden negativ, stellt der Algorithmus sicher, dass dieser im Register r1 steht (siehe Anhang \ref{A.MULv3}). 
 
 Diese Konfiguration ist notwendig, da ein gesetztes MSB keine Wertigkeit in einer negativen  Zahl repräsentiert, sondern nur ein Vorzeichen. Die Bits des Multiplikators (r2) werden jedoch zur Entscheidung, ob der Multiplikant (r1) geschoben werden muss, verwendet. Das bedeutet, sie werden alle als Bits mit einer Wertigkeit interpretiert. Ein Vorzeichenbit führt hier zu falschen Ergebnissen. Mathematisch sind Multiplikator und Multiplikant vertauschbar.
 
-Analog dazu macht der Sortieralgorithmus bei der Multiplikation von zwei vorzeichenbehafteten Zahlen (beide MSBs gesetzt) die Zweierkomplementumwandlung, welche hier zur Darstellung von negativen Zahlen verwendet wird, rückgängig. Es entstehen zwei positive Zahlen (siehe \ref{A.MULv3}). Grundlage dafür ist dieselbe, oben erklärte Problematik. Mathematisch betrachtet entsteht hier wieder kein Unterschied.
+Analog dazu macht der Sortieralgorithmus bei der Multiplikation von zwei vorzeichenbehafteten Zahlen (beide MSBs gesetzt) die Zweierkomplementumwandlung, welche hier zur Darstellung von negativen Zahlen verwendet wird, rückgängig. Es entstehen zwei positive Zahlen (siehe Anhang \ref{A.MULv3}). Grundlage dafür ist dieselbe, oben erklärte Problematik. Mathematisch betrachtet entsteht hier wieder kein Unterschied.
 
 
 \section{Zusammenfassung}
@@ -142,7 +142,7 @@ Der Befehlssatz der RiSC16-Architektur umfasst nur acht Befehle. Die eigene Impl
 
 Die Multiplikation via Addition war sehr einfach zu implementieren und benötigte nur wenige Programmzeilen. Ihre Durchlaufzeit bleibt jedoch abhängig vom Betrag des Multiplikators. Sie kann also nicht vorausgesehen werden. Dagegen ist die Durchlaufzeit der bitweisen Multiplikation nur abhängig von der verwendeten Bitbreite und somit immer konstant. Der Algorithmus der bitweisen Multiplikation war jedoch deutlich komplexer und benötigte wesentlich mehr Programmzeilen. Inwiefern sich die Durchlaufzeiten von bitweiser Multiplikation und Multiplikation via Addition unterscheiden bleibt ungeklärt.
 
-Bei der Betrachtung der der verschiednen Flussdiagramme fällt auf, dass die Algorithmen schnell komplex werden. Es hat sich jedoch gezeigt, dass auch diese Algorithmen mir dem einfachen Befehlssatz der RiSC16-Architektur gut lösbar sind. In einem weiteren Schritt kann der Multiplikation via Addition analog zur bitweisen Multiplikation ein Sortieralgorithmus vorgeschalten werden um eine vorzeichenbehaftete Multiplikation möglich zu machen. Desweiteren kann ein Divisionsalgorithmus entworfen werden, hierfür wird in erster Linie eine Rechtsschieben-Funktion benötigt.
+Bei der Betrachtung der verschiedenen Flussdiagramme fällt auf, dass die Algorithmen schnell komplex werden. Es hat sich jedoch gezeigt, dass auch diese Algorithmen mit dem einfachen Befehlssatz der RiSC16-Architektur gut lösbar sind. In einem weiteren Schritt kann der Multiplikation via Addition analog zur bitweisen Multiplikation ein Sortieralgorithmus vorgeschaltet werden, um eine vorzeichenbehaftete Multiplikation möglich zu machen. Des Weiteren kann ein Divisionsalgorithmus entworfen werden, hierfür wird in erster Linie eine Rechtsschieben-Funktion benötigt.
 
 
 
