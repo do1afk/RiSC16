@@ -1,0 +1,26 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Einleitung}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Aufgabenstellung}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Erstellte Routinen}{2}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Allgemein}{2}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Multiplikation via Addition}{3}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Bitweise Multiplikation}{4}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Zusammenfassung}{5}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Anhang}{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.1}Verwendung der entworfenen Routinen }{7}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2}Multiplikation via Addition: (MULv2)}{8}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.3}Bitweise Multiplikation: (MULv3)}{10}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Literaturverzeichnis}{13}{}%
