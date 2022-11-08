@@ -68,7 +68,7 @@ Ort, Datum, Unterschrift
 \section{Einleitung}
 Bei dem vorliegenden RiSC16-Prozessor handelt es sich um eine der MIPS-Architektur (Microprocessor without interlocked pipeline stages) \cite{MIPS} ähnlichen Architektur \cite{Ausschr}, welche über einen 16 Bit Adressraum, acht Register und acht Befehle verfügt. Des Weiteren stehen ein Assembler \cite{JACOB}, ein Simulator \cite{Bonath} sowie eine Hardwareimplementierung als FPGA (Field Programmable Gate Array) zur Verfügung. 
 
-Es ist nicht geklärt ob die Hardwareimplementierung fehlerfrei funktioniert. Auch unklar ist die Leistungsfähigkeit der Prototypenhardware und ob umfangreiche Programme korrekt abgearbeitet werden können. Desweiteren ist der tatsächliche Programmieraufwand nicht bekannt, welcher zur Implementierung von nicht von der Architektur unterstützen Funktionen nötig ist.
+Wie bei jeder Neuentwicklung ist noch nicht geklärt, ob die Hardwareimplementierung fehlerfrei funktioniert. Unklar ist auch die Leistungsfähigkeit der Prototypenhardware und ob umfangreiche Programme korrekt abgearbeitet werden können. Um das sicherstellen zu können muss der Prozessor einem ersten Test unterzogen werden. Da hier nicht viel Programmcode verfügbar ist, muss dieser erstellt werden.  Des Weiteren ist der tatsächliche Programmieraufwand nicht bekannt, welcher zur Implementierung von nicht von der Architektur unterstützen Funktionen nötig ist.
 
 
 
@@ -82,11 +82,11 @@ Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern b
 
 \section{Erstellte Routinen}
 \subsection{Allgemein}
-Der Befehlssatz der RiSC16-Architektur gliedert sich in zwei Befehle zur Addition (addiere Register mit Register \emph{add}, addiere Register mit Ganzzahl \emph{addi}), zwei Befehle für den Speicherzugriff (speichern \emph{sw} und laden \emph{lw}), einen Logikbefehl (\emph{nand}), einen Befehl zum Laden der oberen zehn Bits einer Ganzzahl (\emph{lui}), sowie zwei Sprungbefehlen (bedingter Sprung bei Ungleichheit \emph{bne}, Sprung zu Adresse \emph{jalr}) auf. Zusätzlich zu diesen acht Befehlen stehen im Assembler mehrere Makros zur Verfügung, von denen zwei verwendet wurden. Das eine Makro (\emph{movi}) lädt die Adresse eines Markers in ein Register. Das andere (\emph{halt}) stoppt den Programmablauf. Von den acht bereitgestellten Registern sind sieben frei verwendbar. Das erste Register (r0) beinhaltet immer den Wert $0000_{hex}$ \cite[1]{JACOBInstr}.
+Der acht Befehle umfassende Befehlssatz der RiSC16-Architektur gliedert sich in zwei Befehle zur Addition (addiere Register mit Register \emph{add}, addiere Register mit Ganzzahl \emph{addi}), zwei Befehle für den Speicherzugriff (speichern \emph{sw} und laden \emph{lw}), einen Logikbefehl (\emph{nand}), einen Befehl zum Laden der oberen zehn Bits einer Ganzzahl (\emph{lui}), sowie zwei Sprungbefehlen (bedingter Sprung bei Ungleichheit \emph{bne}, Sprung zu Adresse \emph{jalr}) auf. Zusätzlich zu diesen acht Befehlen stehen im Assembler mehrere Makros zur Verfügung, von denen zwei verwendet wurden. Das eine Makro (\emph{movi}) lädt die Adresse eines Markers in ein Register. Das Andere (\emph{halt}) stoppt den Programmablauf. Von den acht bereitgestellten Registern sind sieben frei verwendbar. Das erste Register (r0) beinhaltet immer den Wert $0000_{hex}$ \cite[1]{JACOBInstr}.
 
 
 Die RiSC16-Architektur verfügt über keinerlei Stackoperationen. Daher wird beim Programmstart ein Stack in Software initialisiert. Das Register r7 dient hierbei als Stackpointer (SP). Dieses wird zuerst mit der Startadresse des Stacks (hier $7FFF_{hex}$) beschrieben. Dieser Wert steht hart im Speicher und wird über den Marker \glqq Stack\_adr\grqq \ abgerufen (siehe  Abbildung \ref{fig:Stack}).
-Der Stack wurde   Bottom-Up implementiert. Dies bedeutet, dass er zu kleiner werdenden Adressen hin wächst. Das Register r7 zeigt immer auf den Top-Of-Stack (TOS). Das heißt der SP zeigt immer auf das zuletzt abgelegte Element. Die Größe des Stacks (hier 64 Zeilen) ist rein hardwareabhängig, die Grenzen des Stacks werden nicht überwacht.
+Der Stack wurde   Bottom-Up implementiert. Das bedeutet, dass er zu kleiner werdenden Adressen hin wächst. Das Register r7 zeigt immer auf den Top-Of-Stack (TOS). Das heißt, der SP zeigt immer auf das zuletzt abgelegte Element. Die Größe des Stacks (hier 64 Zeilen) ist rein hardwareabhängig, die Grenzen des Stacks werden nicht überwacht.
 
 Die Funktion \emph{push}  wird durch einmaliges dekrementieren des SPs und speichern eines Registers mit dem Befehl \emph{sw} (store word) erreicht (siehe Abbildung \ref{fig:Stack} line 12 folgende). Analog wird die Funktion \emph{pop} durch das Laden eines Werts aus dem Speicher via \emph{lw} (load word) und anschließendem inkrementieren des SPs erreicht. Eine indirekte Adressierung ist mittels eines Immediate-Offsets möglich (siehe Abbildung \ref{fig:Stack} line 14).
 
@@ -99,7 +99,7 @@ Prinzipiell ist das ausreichend, um mit dem Stack arbeiten zu können. Um eine b
 \end{figure}
 
 \newpage
-\noindent Des Weiteren wurde eine Übergabekonvention erarbeitet, die folgendes vorsieht: Es können bis zu zwei Werte an Unterprogramme übergeben werden. Diese müssen vor Aufruf des Unterprogramms in die Register r1 und r2 geladen werden (siehe Abbildung \ref{fig:FKT} line 39 folgende). Das Unterprogramm hat die Aufgabe sicherzustellen, dass nach dem Rücksprung die Registerinhalte der beiden Übergaberegister unverändert bleiben. Der Rückgabewert wird im Register r3 zurückgegeben (siehe Anhang \ref{A.Man}).
+\noindent Des Weiteren wurde eine Übergabekonvention erarbeitet, die Folgendes vorsieht: Es können bis zu zwei Werte an Unterprogramme übergeben werden. Diese müssen vor Aufruf des Unterprogramms in die Register r1 und r2 geladen werden (siehe Abbildung \ref{fig:FKT} line 39 folgende). Das Unterprogramm hat die Aufgabe sicherzustellen, dass nach dem Rücksprung die Registerinhalte der beiden Übergaberegister unverändert bleiben. Der Rückgabewert wird im Register r3 zurückgegeben (siehe Anhang \ref{A.Man}).
 
 Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt die Adresse eines Markers in ein angebenenes Register, hier r5 (siehe Abbildung \ref{fig:FKT} line 43). Im Anschluss erfolgt ein Sprung durch den Befehl \emph{jalr} zu der Adresse aus r5. Die Rücksprungadresse wird in r6 abgelegt (siehe Abbildung \ref{fig:FKT} line 44).
 
@@ -111,14 +111,20 @@ Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt
 
 
 \subsection{Multiplikation via Addition}
-Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet (siehe Anhang \ref{A.MULv2}). Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator (r1) zu Null geworden ist. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist.
+Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet (siehe Anhang \ref{A.MULv2}). Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator (r1) zu Null geworden ist (siehe Abbildung \ref{fig:MULv2_code} line 85 fort folgende). Vor Ausführung der Routine wird überprüft, ob Multiplikator oder Multiplikant gleich Null sind (siehe Abbildung \ref{fig:MULv2_code} line 79 fort folgende) und gegebenenfalls Null zurück gegeben. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist.
+
+\begin{figure}[h]
+    \includegraphics[width =0.8\textwidth]{MULv2_code.png}
+\caption{Multiplikation via Addition}
+\label{fig:MULv2_code}
+\end{figure}
 
 \subsection{Bitweise Multiplikation}
 Eine andere Möglichkeit der Multiplikation besteht darin, zwei Zahlen bitweise zu multiplizieren. Der entwickelte Multiplikationsalgorithmus funktioniert nach folgendem Prinzip: 
 
-Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$) betrachtet. Davon ist eine Zahl der Multiplikant und die Andere der Multiplikator. Zuerst wird das Most Significant Bit (MSB), das siebte Bit, des Multiplikators (r2) untersucht. Ist dieses gesetzt, so wird der Multiplikant (r1) um die Wertigkeit des untersuchten Bits, im ersten Schritt siebenmal, nach links geschoben und auf das Ergebnisregister (r3) addiert. Ist das MSB nicht gesetzt, so wird die Addition nicht ausgeführt. \cite{MULv3}
+Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$) betrachtet. Davon ist eine Zahl der Multiplikant und die Andere der Multiplikator. Zuerst wird das Most Significant Bit (MSB), das siebte Bit, des Multiplikators (r2) untersucht. Ist dieses gesetzt, so wird der Multiplikant (r1) um die Wertigkeit des untersuchten Bits, im ersten Schritt siebenmal, nach links geschoben und auf das Ergebnisregister (r3) addiert. Ist das MSB nicht gesetzt, so wird die Addition nicht ausgeführt \cite{MULv3}. Analog verfahren wir mit allen weiteren Bits. 
 
-Analog verfahren wir mit allen weiteren Bits. Diesen Prozess müssen wir für alle Bits des Multiplikators durchführen, in unserem Beispiel ergibt das acht Wiederholungen (siehe Abbildung \ref{fig:bitw_Mul_Prinzip}). Dieser Prozess ist unabhängig von der Bitbreite, da diese lediglich die Anzahl der Wiederholungen des Algorithmus vorschreibt.
+\noindent Diesen Prozess müssen wir für alle Bits des Multiplikators durchführen, in unserem Beispiel ergibt das acht Wiederholungen (siehe Abbildung \ref{fig:bitw_Mul_Prinzip}). Dieser Prozess ist unabhängig von der Bitbreite, da diese lediglich die Anzahl der Wiederholungen des Algorithmus vorschreibt.
 
 
 
@@ -132,16 +138,16 @@ Analog verfahren wir mit allen weiteren Bits. Diesen Prozess müssen wir für al
 
 Da die RiSC16-Architektur über keinerlei Schiebebefehle verfügt, wurde hierfür ein Unterprogramm entworfen, welches als Rückgabewert das um eine gewünschte Schrittweite geschobenes Register hat und nach folgendem Prinzip arbeitet:
 
-Im einfachen Binärsystem hat die Stelle $n+1$ immer genau die doppelte Wertigkeit der Stelle $n$, zum Beispiel $2^2 = 4 = 2 \cdot 2^1$. Wird ein Wort nach links geschoben und  rechts mit Nullen aufgefüllt, so verdoppelt sich die Wertigkeit des Wortes mit jedem Schiebevorgang. Dies kommt einer Multiplikation mit Zwei gleich. Bei einer gewünschten Schrittweite $m$ verdoppelt dieses Unterprogramm das Register  $m$-mal.
+Im einfachen Binärsystem hat die Stelle $n+1$ immer genau die doppelte Wertigkeit der Stelle $n$, zum Beispiel $2^2 = 4 = 2 \cdot 2^1$. Wird ein Wort nach links geschoben und  rechts mit Nullen aufgefüllt, so verdoppelt sich die Wertigkeit des Wortes mit jedem Schiebevorgang. Dies kommt einer Multiplikation mit Zwei gleich. Bei einer gewünschten Schrittweite $m$ verdoppelt das Unterprogramm das Register  $m$-mal.
 
 Zuletzt wurde der bitweisen Multiplikation noch ein Sortieralgorithmus vorgeschaltet, welcher automatisch die richtige Registerkonfiguration für vorzeichenbehaftete Zahlen vornimmt. Der Algorithmus untersucht die Vorzeichen (MSBs) von Multiplikator und Multiplikant. Ist genau einer der Beiden negativ, stellt der Algorithmus sicher, dass dieser im Register r1 steht (siehe Anhang \ref{A.MULv3}). 
 
-\noindent Ein Grund für die Notwendigkeit dieser Konfiguration ist, dass ein gesetztes MSB keine Wertigkeit in einer negativen  Zahl repräsentiert, sondern nur ein Vorzeichen. Die Bits des Multiplikators (r2) werden jedoch zur Entscheidung, ob der Multiplikant (r1) geschoben werden muss, verwendet. Das bedeutet, sie werden alle als Bits mit einer Wertigkeit interpretiert. Ein Vorzeichenbit führt hier zu falschen Ergebnissen. Mathematisch sind Multiplikator und Multiplikant vertauschbar.
+ Ein Grund für die Notwendigkeit dieser Konfiguration ist, dass ein gesetztes MSB keine Wertigkeit in einer negativen  Zahl repräsentiert, sondern nur ein Vorzeichen. Die Bits des Multiplikators (r2) werden jedoch zur Entscheidung, ob der Multiplikant (r1) geschoben werden muss, verwendet. Das bedeutet, sie werden alle als Bits mit einer Wertigkeit interpretiert. Ein Vorzeichenbit führt hier zu falschen Ergebnissen. Mathematisch sind Multiplikator und Multiplikant vertauschbar.
 
 Analog dazu macht der Sortieralgorithmus bei der Multiplikation von zwei vorzeichenbehafteten Zahlen (beide MSBs gesetzt) die Zweierkomplementumwandlung, welche hier zur Darstellung von negativen Zahlen verwendet wird, rückgängig. Es entstehen zwei positive Zahlen (siehe Anhang \ref{A.MULv3}). Grundlage dafür ist dieselbe, oben erklärte Problematik. Mathematisch betrachtet entsteht hier wieder kein Unterschied.
-\newpage
+
 \section{Zusammenfassung}
-Der Befehlssatz der RiSC16-Architektur umfasst nur acht Befehle. Damit sind die Operationen prinzipiell auf Additionen, \emph{NAND}-Logikoperationen und Speicherzugriffe beschänkt. Das direkte Arbeiten mit Speicherzugriffen und die Möglichkeit mittels Logikoperationen  einzelne Bits zu manipulieren ergibt bei der Programmierung viele Freiheitsgrade und erlaubt abstrakte Lösungsansätze. Das zeigt der Algorithmus zur bitweisen Multiplikation besonders deutlich. Der Programmumfang schwankt dabei stark zwischen etwa 30 Zeilen für die Multiplikation via Addition und 150 Zeilen für die bitweise Multiplikation. 
+Der Befehlssatz der RiSC16-Architektur umfasst nur acht Befehle. Damit sind die Operationen prinzipiell auf Additionen, \emph{NAND}-Logikoperationen und Speicherzugriffe beschänkt. Das direkte Arbeiten mit Speicherzugriffen und die Möglichkeit mittels Logikoperationen  einzelne Bits zu manipulieren, ergibt bei der Programmierung viele Freiheitsgrade und erlaubt abstrakte Lösungsansätze. Das zeigt der Algorithmus zur bitweisen Multiplikation besonders deutlich. Der Programmumfang schwankt dabei stark zwischen etwa 30 Zeilen für die Multiplikation via Addition und 150 Zeilen für die bitweise Multiplikation. 
 
 Tatsächliche Hardwaretests konnten in dieser Arbeit nicht durchgeführt werden. Daher stehen keinerlei  Messergebnisse zu Durchlaufzeiten verschiedener Programme zur Verfügung.
 
@@ -264,7 +270,7 @@ Multipliziere zwei vorzeichenlose Zahlen.
 \vspace{0.25cm}
 \noindent Flussdiagramm siehe nächste Seite.
 
-\thispagestyle{empty}
+%\thispagestyle{empty}
 \includepdf[pages=1]{MULv2.pdf}
 
 \newpage
@@ -287,7 +293,7 @@ Multipliziere zwei vorzeichenbehaftete Acht-Bit-Zahlen.
 
 
 
-\thispagestyle{empty}
+%\thispagestyle{empty}
 \includepdf[pages=1]{MULv3.pdf}
 
 \thispagestyle{empty}
