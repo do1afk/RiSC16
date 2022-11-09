@@ -82,7 +82,20 @@ Zuerst wurde ein Stack in Software implementiert, um das Sichern von Registern b
 
 \section{Erstellte Routinen}
 \subsection{Allgemein}
-Der acht Befehle umfassende Befehlssatz der RiSC16-Architektur gliedert sich in zwei Befehle zur Addition (addiere Register mit Register \emph{add}, addiere Register mit Ganzzahl \emph{addi}), zwei Befehle für den Speicherzugriff (speichern \emph{sw} und laden \emph{lw}), einen Logikbefehl (\emph{nand}), einen Befehl zum Laden der oberen zehn Bits einer Ganzzahl (\emph{lui}), sowie zwei Sprungbefehlen (bedingter Sprung bei Ungleichheit \emph{bne}, Sprung zu Adresse \emph{jalr}) auf. Zusätzlich zu diesen acht Befehlen stehen im Assembler mehrere Makros zur Verfügung, von denen zwei verwendet wurden. Das eine Makro (\emph{movi}) lädt die Adresse eines Markers in ein Register. Das Andere (\emph{halt}) stoppt den Programmablauf. Von den acht bereitgestellten Registern sind sieben frei verwendbar. Das erste Register (r0) beinhaltet immer den Wert $0000_{hex}$ \cite[1]{JACOBInstr}.
+
+Der acht Befehle umfassende Befehlssatz der RiSC16-Architektur gliedert sich in:
+
+\begin{compactitem}
+     \item zwei Befehle zur Addition (addiere Register mit Register \emph{add} und addiere Register mit Ganzzahl \emph{addi}),
+     \item zwei Befehle für den Speicherzugriff (speichern \emph{sw} und laden \emph{lw}),
+     \item einen Logikbefehl (\emph{nand}),
+     \item einen Befehl zum Laden der oberen zehn Bits einer Ganzzahl (\emph{lui}),
+     \item sowie zwei Sprungbefehlen (bedingter Sprung bei Ungleichheit \emph{bne} und Sprung zu Adresse \emph{jalr}).
+ \end{compactitem}
+
+% Der acht Befehle umfassende Befehlssatz der RiSC16-Architektur gliedert sich in zwei Befehle zur Addition (addiere Register mit Register \emph{add}, addiere Register mit Ganzzahl \emph{addi}), zwei Befehle für den Speicherzugriff (speichern \emph{sw} und laden \emph{lw}), einen Logikbefehl (\emph{nand}), einen Befehl zum Laden der oberen zehn Bits einer Ganzzahl (\emph{lui}), sowie zwei Sprungbefehlen (bedingter Sprung bei Ungleichheit \emph{bne}, Sprung zu Adresse \emph{jalr}) auf. 
+
+\noindent Zusätzlich zu diesen acht Befehlen stehen im Assembler mehrere Makros zur Verfügung, von denen zwei verwendet wurden. Das eine Makro (\emph{movi}) lädt die Adresse eines Markers in ein Register. Das Andere (\emph{halt}) stoppt den Programmablauf. Von den acht bereitgestellten Registern sind sieben frei verwendbar. Das erste Register (r0) beinhaltet immer den Wert $0000_{hex}$ \cite[1]{JACOBInstr}.
 
 
 Die RiSC16-Architektur verfügt über keinerlei Stackoperationen. Daher wird beim Programmstart ein Stack in Software initialisiert. Das Register r7 dient hierbei als Stackpointer (SP). Dieses wird zuerst mit der Startadresse des Stacks (hier $7FFF_{hex}$) beschrieben. Dieser Wert steht hart im Speicher und wird über den Marker \glqq Stack\_adr\grqq \ abgerufen (siehe  Abbildung \ref{fig:Stack}).
@@ -111,7 +124,7 @@ Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt
 
 
 \subsection{Multiplikation via Addition}
-Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet (siehe Anhang \ref{A.MULv2}). Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator (r1) zu Null geworden ist (siehe Abbildung \ref{fig:MULv2_code} line 85 fort folgende). Vor Ausführung der Routine wird überprüft, ob Multiplikator oder Multiplikant gleich Null sind (siehe Abbildung \ref{fig:MULv2_code} line 79 fort folgende) und gegebenenfalls Null zurück gegeben. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist.
+Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet (siehe Anhang \ref{A.MULv2}). Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator (r1) zu Null geworden ist (siehe Abbildung \ref{fig:MULv2_code} line 85 fort folgende). Vor Ausführung der Routine wird überprüft, ob Multiplikator oder Multiplikant gleich Null sind (siehe Abbildung \ref{fig:MULv2_code} line 79 fort folgende) und gegebenenfalls wird Null zurück gegeben. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist.
 
 \begin{figure}[h]
     \includegraphics[width =0.8\textwidth]{MULv2_code.png}
@@ -122,7 +135,7 @@ Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multi
 \subsection{Bitweise Multiplikation}
 Eine andere Möglichkeit der Multiplikation besteht darin, zwei Zahlen bitweise zu multiplizieren. Der entwickelte Multiplikationsalgorithmus funktioniert nach folgendem Prinzip: 
 
-Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$) betrachtet. Davon ist eine Zahl der Multiplikant und die Andere der Multiplikator. Zuerst wird das Most Significant Bit (MSB), das siebte Bit, des Multiplikators (r2) untersucht. Ist dieses gesetzt, so wird der Multiplikant (r1) um die Wertigkeit des untersuchten Bits, im ersten Schritt siebenmal, nach links geschoben und auf das Ergebnisregister (r3) addiert. Ist das MSB nicht gesetzt, so wird die Addition nicht ausgeführt \cite{MULv3}. Analog verfahren wir mit allen weiteren Bits. 
+Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \\ ($n = 8$) betrachtet. Davon ist eine Zahl der Multiplikant und die Andere der Multiplikator. Zuerst wird das Most Significant Bit (MSB), das siebte Bit, des Multiplikators (r2) untersucht. Ist dieses gesetzt, so wird der Multiplikant (r1) um die Wertigkeit des untersuchten Bits, im ersten Schritt siebenmal, nach links geschoben und auf das Ergebnisregister (r3) addiert. Ist das MSB nicht gesetzt, so wird die Addition nicht ausgeführt \cite{MULv3}. \\
 
 \noindent Diesen Prozess müssen wir für alle Bits des Multiplikators durchführen, in unserem Beispiel ergibt das acht Wiederholungen (siehe Abbildung \ref{fig:bitw_Mul_Prinzip}). Dieser Prozess ist unabhängig von der Bitbreite, da diese lediglich die Anzahl der Wiederholungen des Algorithmus vorschreibt.
 

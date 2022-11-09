@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.4.26)  8 NOV 2022 10:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.4.26)  9 NOV 2022 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -756,30 +756,34 @@ Package biblatex Info: Reference segment=0 on input line 26.
 <Stack_init.png, id=21, 945.5325pt x 463.7325pt>
 File: Stack_init.png Graphic file (type png)
 <use Stack_init.png>
-Package pdftex.def Info: Stack_init.png  used on input line 96.
+Package pdftex.def Info: Stack_init.png  used on input line 109.
 (pdftex.def)             Requested size: 396.91325pt x 194.66725pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [2]
-<Funktionsaufruf.png, id=30, 583.42969pt x 319.1925pt>
+<Funktionsaufruf.png, id=31, 583.42969pt x 319.1925pt>
 File: Funktionsaufruf.png Graphic file (type png)
 <use Funktionsaufruf.png>
-Package pdftex.def Info: Funktionsaufruf.png  used on input line 107.
+Package pdftex.def Info: Funktionsaufruf.png  used on input line 120.
 (pdftex.def)             Requested size: 176.40439pt x 96.50853pt.
  [3 <./Stack_init.png (PNG copy)> <./Funktionsaufruf.png (PNG copy)>]
-<MULv2_code.png, id=34, 1030.60031pt x 458.46281pt>
+<MULv2_code.png, id=35, 1030.60031pt x 458.46281pt>
 File: MULv2_code.png Graphic file (type png)
 <use MULv2_code.png>
-Package pdftex.def Info: MULv2_code.png  used on input line 117.
+Package pdftex.def Info: MULv2_code.png  used on input line 130.
 (pdftex.def)             Requested size: 352.81552pt x 156.9456pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
+
+ []
+
 [4 <./MULv2_code.png (PNG copy)>]
-<bitweise_Mul_Prinzip.png, id=39, 548.0475pt x 337.26pt>
+<bitweise_Mul_Prinzip.png, id=40, 548.0475pt x 337.26pt>
 File: bitweise_Mul_Prinzip.png Graphic file (type png)
 <use bitweise_Mul_Prinzip.png>
-Package pdftex.def Info: bitweise_Mul_Prinzip.png  used on input line 132.
+Package pdftex.def Info: bitweise_Mul_Prinzip.png  used on input line 145.
 (pdftex.def)             Requested size: 352.81552pt x 217.1219pt.
  [5 <./bitweise_Mul_Prinzip.png>] [6] [7]
 
@@ -788,7 +792,7 @@ pdfTeX warning: pdflatex (file ./MULv2.pdf): PDF inclusion: found PDF version <
 <MULv2.pdf, id=53, 598.15468pt x 846.0408pt>
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf>
-Package pdftex.def Info: MULv2.pdf  used on input line 274.
+Package pdftex.def Info: MULv2.pdf  used on input line 287.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 
 
@@ -796,7 +800,7 @@ pdfTeX warning: pdflatex (file ./MULv2.pdf): PDF inclusion: found PDF version <
 1.7>, but at most version <1.5> allowed
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf>
-Package pdftex.def Info: MULv2.pdf  used on input line 274.
+Package pdftex.def Info: MULv2.pdf  used on input line 287.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 
 
@@ -809,24 +813,24 @@ pdfTeX warning: pdflatex (file ./MULv2.pdf): PDF inclusion: found PDF version <
 <MULv2.pdf, id=56, page=1, 598.15468pt x 846.0408pt>
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf, page 1>
-Package pdftex.def Info: MULv2.pdf , page1 used on input line 274.
+Package pdftex.def Info: MULv2.pdf , page1 used on input line 287.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf, page 1>
-Package pdftex.def Info: MULv2.pdf , page1 used on input line 274.
+Package pdftex.def Info: MULv2.pdf , page1 used on input line 287.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 [8]
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf, page 1>
-Package pdftex.def Info: MULv2.pdf , page1 used on input line 274.
+Package pdftex.def Info: MULv2.pdf , page1 used on input line 287.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf, page 1>
-Package pdftex.def Info: MULv2.pdf , page1 used on input line 274.
+Package pdftex.def Info: MULv2.pdf , page1 used on input line 287.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv2.pdf Graphic file (type pdf)
 <use MULv2.pdf, page 1>
-Package pdftex.def Info: MULv2.pdf , page1 used on input line 274.
+Package pdftex.def Info: MULv2.pdf , page1 used on input line 287.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
  [9 <./MULv2.pdf>]
 
@@ -835,7 +839,7 @@ pdfTeX warning: pdflatex (file ./MULv3.pdf): PDF inclusion: found PDF version <
 <MULv3.pdf, id=72, 598.15468pt x 846.0408pt>
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf>
-Package pdftex.def Info: MULv3.pdf  used on input line 297.
+Package pdftex.def Info: MULv3.pdf  used on input line 310.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 
 
@@ -843,7 +847,7 @@ pdfTeX warning: pdflatex (file ./MULv3.pdf): PDF inclusion: found PDF version <
 1.7>, but at most version <1.5> allowed
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf>
-Package pdftex.def Info: MULv3.pdf  used on input line 297.
+Package pdftex.def Info: MULv3.pdf  used on input line 310.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 
 
@@ -856,29 +860,29 @@ pdfTeX warning: pdflatex (file ./MULv3.pdf): PDF inclusion: found PDF version <
 <MULv3.pdf, id=75, page=1, 598.15468pt x 846.0408pt>
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 1>
-Package pdftex.def Info: MULv3.pdf , page1 used on input line 297.
+Package pdftex.def Info: MULv3.pdf , page1 used on input line 310.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 1>
-Package pdftex.def Info: MULv3.pdf , page1 used on input line 297.
+Package pdftex.def Info: MULv3.pdf , page1 used on input line 310.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 [10]
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 1>
-Package pdftex.def Info: MULv3.pdf , page1 used on input line 297.
+Package pdftex.def Info: MULv3.pdf , page1 used on input line 310.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 1>
-Package pdftex.def Info: MULv3.pdf , page1 used on input line 297.
+Package pdftex.def Info: MULv3.pdf , page1 used on input line 310.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 1>
-Package pdftex.def Info: MULv3.pdf , page1 used on input line 297.
+Package pdftex.def Info: MULv3.pdf , page1 used on input line 310.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
  [11 <./MULv3.pdf>]
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf>
-Package pdftex.def Info: MULv3.pdf  used on input line 300.
+Package pdftex.def Info: MULv3.pdf  used on input line 313.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 
 
@@ -886,7 +890,7 @@ pdfTeX warning: pdflatex (file ./MULv3.pdf): PDF inclusion: found PDF version <
 1.7>, but at most version <1.5> allowed
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf>
-Package pdftex.def Info: MULv3.pdf  used on input line 300.
+Package pdftex.def Info: MULv3.pdf  used on input line 313.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 
 
@@ -899,35 +903,32 @@ pdfTeX warning: pdflatex (file ./MULv3.pdf): PDF inclusion: found PDF version <
 <MULv3.pdf, id=95, page=2, 598.15468pt x 846.0408pt>
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 2>
-Package pdftex.def Info: MULv3.pdf , page2 used on input line 300.
+Package pdftex.def Info: MULv3.pdf , page2 used on input line 313.
 (pdftex.def)             Requested size: 598.15321pt x 846.03874pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 2>
-Package pdftex.def Info: MULv3.pdf , page2 used on input line 300.
+Package pdftex.def Info: MULv3.pdf , page2 used on input line 313.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 2>
-Package pdftex.def Info: MULv3.pdf , page2 used on input line 300.
+Package pdftex.def Info: MULv3.pdf , page2 used on input line 313.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 2>
-Package pdftex.def Info: MULv3.pdf , page2 used on input line 300.
+Package pdftex.def Info: MULv3.pdf , page2 used on input line 313.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 File: MULv3.pdf Graphic file (type pdf)
 <use MULv3.pdf, page 2>
-Package pdftex.def Info: MULv3.pdf , page2 used on input line 300.
+Package pdftex.def Info: MULv3.pdf , page2 used on input line 313.
 (pdftex.def)             Requested size: 597.4778pt x 845.08344pt.
 [12 <./MULv3.pdf>]
-Overfull \hbox (10.60576pt too wide) in paragraph at lines 309--309
+Overfull \hbox (10.60576pt too wide) in paragraph at lines 322--322
 []\OT1/cmr/m/n/10.95 HARDAWARE AK-TU-ELL. \OT1/cmr/m/it/10.95 MIPS-Architektur\
 OT1/cmr/m/n/10.95 . 2022. \OT1/cmr/m/sc/10.95 url\OT1/cmr/m/n/10.95 : $\OT1/cmt
 t/m/n/10.95 https : / / www . hardware -[]
  []
 
 [13] (./Projektarbeit.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package logreq Info: Writing requests to 'Projektarbeit.run.xml'.
 \openout1 = `Projektarbeit.run.xml'.
 
@@ -935,11 +936,11 @@ Package logreq Info: Writing requests to 'Projektarbeit.run.xml'.
 Here is how much of TeX's memory you used:
  15119 strings out of 481239
  291059 string characters out of 5920377
- 944082 words of memory out of 5000000
+ 945082 words of memory out of 5000000
  30171 multiletter control sequences out of 15000+600000
  541221 words of font info for 55 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 40i,18n,45p,961b,2193s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,18n,45p,938b,2193s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
@@ -954,7 +955,7 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fo
 nts/type1/public/cm-super/sfrm1095.pfb>
-Output written on Projektarbeit.pdf (16 pages, 470357 bytes).
+Output written on Projektarbeit.pdf (16 pages, 470398 bytes).
 PDF statistics:
  149 PDF objects out of 1000 (max. 8388607)
  96 compressed objects within 1 object stream
