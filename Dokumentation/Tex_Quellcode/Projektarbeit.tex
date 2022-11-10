@@ -68,7 +68,7 @@ Ort, Datum, Unterschrift
 \section{Einleitung}
 Bei dem vorliegenden RiSC16-Prozessor handelt es sich um eine der MIPS-Architektur (Microprocessor without interlocked pipeline stages) \cite{MIPS} ähnlichen Architektur \cite{Ausschr}, welche über einen 16 Bit Adressraum, acht Register und acht Befehle verfügt. Des Weiteren stehen ein Assembler \cite{JACOB}, ein Simulator \cite{Bonath} sowie eine Hardwareimplementierung als FPGA (Field Programmable Gate Array) zur Verfügung. 
 
-Wie bei jeder Neuentwicklung ist noch nicht geklärt, ob die Hardwareimplementierung fehlerfrei funktioniert. Unklar ist auch die Leistungsfähigkeit der Prototypenhardware und ob umfangreiche Programme korrekt abgearbeitet werden können. Um das sicherstellen zu können muss der Prozessor einem ersten Test unterzogen werden. Da hier nicht viel Programmcode verfügbar ist, muss dieser erstellt werden.  Des Weiteren ist der tatsächliche Programmieraufwand nicht bekannt, welcher zur Implementierung von nicht von der Architektur unterstützen Funktionen nötig ist.
+Wie bei jeder Neuentwicklung ist noch nicht geklärt, ob die Hardwareimplementierung fehlerfrei funktioniert. Unklar ist auch die Leistungsfähigkeit der Prototypenhardware und ob umfangreiche Programme korrekt abgearbeitet werden können. Um das sicherstellen zu können, muss der Prozessor einem ersten Test unterzogen werden. Da hier nicht viel Programmcode verfügbar ist, muss dieser zunächst erstellt werden.  Des Weiteren ist der tatsächliche Programmieraufwand nicht bekannt, welcher zur Implementierung von nicht von der Architektur unterstützen Funktionen nötig ist.
 
 
 
@@ -124,7 +124,7 @@ Der eigentliche Programmaufruf erfolgt über das Makro \emph{movi}. Dieses lädt
 
 
 \subsection{Multiplikation via Addition}
-Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet (siehe Anhang \ref{A.MULv2}). Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator (r1) zu Null geworden ist (siehe Abbildung \ref{fig:MULv2_code} line 85 fort folgende). Vor Ausführung der Routine wird überprüft, ob Multiplikator oder Multiplikant gleich Null sind (siehe Abbildung \ref{fig:MULv2_code} line 79 fort folgende) und gegebenenfalls wird Null zurück gegeben. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist.
+Eine Möglichkeit eine Multiplikation zu implementieren besteht darin, den Multiplikanten so oft zu sich selbst dazu zu addieren, wie es der Multiplikator vorschreibt. Aus $X = 3 \cdot 3$ wird  $X = 3+3+3$. Diese Art der Multiplikation ist sehr einfach durch eine Schleife zu realisieren und wurde in der Routine \emph{MULv2} angewendet (siehe Anhang \ref{A.MULv2}). Hierbei wird der Multiplikant (r2) solange auf das Ergebnisregister (r3) addiert, bis der Multiplikator (r1) zu Null geworden ist (siehe Abbildung \ref{fig:MULv2_code} line 85 fort folgende). Vor Ausführung der Routine wird überprüft, ob Multiplikator oder Multiplikant gleich Null sind (siehe Abbildung \ref{fig:MULv2_code} line 79 fort folgende) und gegebenenfalls wird Null zurückgegeben. Eine vorzeichenbehaftete Multiplikation ist nicht vorgesehen, ist jedoch prinzipiell möglich solange nur der Multiplikant negativ ist.
 
 \begin{figure}[h]
     \includegraphics[width =0.8\textwidth]{MULv2_code.png}
@@ -149,7 +149,7 @@ Beispielhaft wird im Nachfolgenden die Multiplikation von zwei Acht-Bit-Zahlen \
 
 
 
-Da die RiSC16-Architektur über keinerlei Schiebebefehle verfügt, wurde hierfür ein Unterprogramm entworfen, welches als Rückgabewert das um eine gewünschte Schrittweite geschobenes Register hat und nach folgendem Prinzip arbeitet:
+\noindent Da die RiSC16-Architektur über keinerlei Schiebebefehle verfügt, wurde hierfür ein Unterprogramm entworfen, welches als Rückgabewert das um eine gewünschte Schrittweite geschobenes Register hat und nach folgendem Prinzip arbeitet:
 
 Im einfachen Binärsystem hat die Stelle $n+1$ immer genau die doppelte Wertigkeit der Stelle $n$, zum Beispiel $2^2 = 4 = 2 \cdot 2^1$. Wird ein Wort nach links geschoben und  rechts mit Nullen aufgefüllt, so verdoppelt sich die Wertigkeit des Wortes mit jedem Schiebevorgang. Dies kommt einer Multiplikation mit Zwei gleich. Bei einer gewünschten Schrittweite $m$ verdoppelt das Unterprogramm das Register  $m$-mal.
 
